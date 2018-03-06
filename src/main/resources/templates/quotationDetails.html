@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title th:text="${'Quotation '+quotation.id+' Details'}"></title>
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" />
+<meta id="_csrf_token" name="_csrf_token" th:content="${_csrf.token}" />
+</head>
+<body>
+
+<div class="container">
+
+	<h1 th:text="${'Quotation '+quotation.id+' items'}"></h1>
+
+	<form id="formQuotation">
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+		<div> 
+			<label for="supplier">Supplier</label>
+			<select th:field="${quotation.supplier.id}">
+				<option value="">Select Supplier</option>
+				<option th:each="supplier: ${suppliers}" th:value="${supplier.id}" th:text="${supplier.supplierName}"></option>
+			</select>
+		</div>
+		<div>
+			<label for="quotationDate">Date</label>
+			<input type="date" th:field="${quotation.quotationDate}" />
+		</div>
+	</form>
+
+	<button type="button" data-toggle="modal" data-target="#prItemsModal">Select Items</button><br/>
+	
+	<!-- Page size -->
+	<label for="selectPageSizeQuotationItems">Show</label>
+	<select id="selectPageSizeQuotationItems">
+		<option>5</option>
+		<option>10</option>
+		<option selected="selected">20</option>
+		<option>50</option>
+	</select>
+	<span>entries</span><br />
+	
+	<!-- quotation items -->
+	<form id="formQuotationItems">
+	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+	<table class="table" id="dtQuotationItems">
+		<tr>
+			<th>ID</th>
+			<th>Item Name</th>
+			<th>Description</th>
+			<th>Unit</th>
+			<th>Quantity</th>
+			<th>Price</th>
+			<th>Action</th>
+		</tr>	
+	</table>
+	
+	</form>
+	<input type="submit" value="Save Items" form="formQuotationItems"/>
+	<button type="submit" form="formQuotation">Save Quotation</button>
+	<!-- pagination -->
+	<ul class="pager" id="paginationQuotationItems"></ul>
+	
+	<!-- Modal -->
+	<div id="prItemsModal" class="modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Purchase Request <span id="txtPrNo" th:text="${quotation.purchaseRequest.prNo}"></span> items</h4>
+				</div>
+				<!-- end header -->
+				<div class="modal-body">	
+				
+					<label for="selectPageSizePrItems">Show</label>
+					<select id="selectPageSizePrItems">
+						<option>5</option>
+						<option>10</option>
+						<option selected="selected">20</option>
+						<option>50</option>
+					</select>
+				
+					<form id="formAddItems">
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+					<input type="hidden" th:value="${quotation.id}" name="quotation" id="inputQuotation" />
+					<table class="table" id="dtPrItems">
+						<tr>
+							<th></th>
+							<th>ID</th>
+							<th>Item Name</th>
+							<th>Description</th>
+							<th>Unit</th>
+							<th>Quantity</th>
+						</tr>
+					</table>
+					
+				</form>	
+				<ul class="pager" id="paginationPrItems"></ul>	
+				</div>
+				<!-- end body -->
+				<div class="modal-footer">
+				<input type="submit" value="Add Items" form="formAddItems" />
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Bootstrap -->
+<script type="text/javascript" th:src="@{/jquery-3.2.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+
+<script type="module" th:src="@{/js/quotationItems.js}"></script>
+
+
+</body>
+</html>

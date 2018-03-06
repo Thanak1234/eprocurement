@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Manage Purchase Order</title>
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+	
+	<div class="container">
+	<!-- search -->
+	<label for="searchBy">Search Purchase Request</label>
+	<input type="search" name="search" id="search" />
+	<button type="button" id="btnSearch" disabled="disabled">Search</button><br />
+	<!-- search by date -->
+	<label for="startDate">Date from</label>
+	<input type="date" id="startDate" name="startDate" />
+	<label for="endDate">to</label>
+	<input type="date" id="endDate" name="endDate" /><br />
+	
+	<!-- select size -->
+	<label for="selectPageSize">Show</label>
+	<select id="selectPageSize">
+		<option>5</option>
+		<option>10</option>
+		<option selected="selected">20</option>
+		<option>50</option>
+	</select><span>entries</span><br />
+	<!-- purchase order table -->
+	<table id="dtPurchaseOrders" class="table">
+		<tr>
+			<th>Purchase Order Number</th>
+			<th>Purchase Request Number</th>
+			<th>Date</th>
+			<th>Supplier</th>
+			<th>Action</th>
+		</tr>
+	</table>
+	
+	<!-- pagination -->
+	<ul class="pager" id="pagination"></ul>
+	</div>
+	<script type="text/javascript" th:src="@{/jquery-3.2.1.min.js}"></script>
+	<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+	
+	<script type="module" th:src="@{/js/purchaseOrders.js}"></script>
+</body>
+</html>

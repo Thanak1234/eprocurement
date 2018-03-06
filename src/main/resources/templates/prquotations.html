@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title th:text="${'Purchase Request '+pr.prNo+' Quotations'}"></title>
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container">
+	
+	<h1>Purchase Request <span id="txtPrNo" th:text="${pr.prNo}"></span> Quotations</h1>
+	
+	<a data-toggle="modal" href="#modalNewQuotation">New Quotation</a><br />
+	
+	<!-- page size -->
+	<label for="selectPageSize">Show</label>
+	<select id="selectPageSize">
+		<option>5</option>
+		<option>10</option>
+		<option selected="selected">20</option>
+		<option>20</option>
+	</select><span>entries</span><br />
+	<!-- table -->	
+	<table id="dtPrQuotations" class="table">
+		<tr>
+			<th>ID</th>
+			<th>Date</th>
+			<th>Supplier</th>
+			<th></th>
+		</tr>
+	</table>
+	<!-- pagination -->
+	<ul id="pagination" class="pager"></ul>
+</div>
+
+<!-- modal new quotation -->
+<div class="modal" id="modalNewQuotation">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">New Quotation</h4>
+			</div><!-- end modal header -->
+			<div class="modal-body">
+				<form method="post" id="formQuotation" th:action="@{'/pr/'+${pr.prNo}+'/quotation/new'}"> 
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+					<label for="quotationSupplier">Supplier</label>
+					<select id="quotationSupplier" name="quotationSupplier">
+						<option value="">Select Supplier</option>
+						<option th:each="supplier : ${suppliers}" th:text="${supplier.supplierName}" th:value="${supplier.id}"></option>
+					</select>	
+				</form>
+			<div class="modal-footer">
+				<button form="formQuotation" type="submit">Submit</button>
+			</div>
+			</div><!-- end modal body -->
+		</div><!-- end modal content -->
+	</div><!-- end modal dialog -->
+</div>
+	
+<!-- Bootstrap -->	
+<script type="text/javascript" th:src="@{/jquery-3.2.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+
+<script type="module" th:src="@{/js/prQuotations.js}"></script>
+
+</body>
+</html>

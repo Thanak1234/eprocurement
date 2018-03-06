@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "admin.username",
+    "type": "java.lang.String",
+    "description": "set the default username for admin account"
+  },
+  {
+    "name": "admin.password",
+    "type": "java.lang.String",
+    "description": "set the default password for the admin account"
+  },
+  {
+    "name": "admin.disabled",
+    "type": "java.lang.String",
+    "description": "disable the default admin account"
+  }
+]}

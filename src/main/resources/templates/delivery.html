@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title th:text="${'Delivery '+delivery.id+' Items'}"></title>
+<meta id="_csrf_token" name="_csrf_token" th:content="${_csrf.token}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+
+	<div class="container">
+		<h1>
+			Delivery <span id="deliveryid" th:text="${delivery.id}"></span>
+		</h1>
+
+		<button data-toggle="modal" data-target="#modalPoItems">Select
+			Items</button>
+		<br />
+
+		<!-- select page size -->
+		<label for="selectPageSizeDeliveryItem">Show</label> <select
+			id="selectPageSizeDeliveryItem">
+			<option>5</option>
+			<option>10</option>
+			<option selected="selected">20</option>
+			<option>50</option>
+		</select><span>entries</span><br />
+
+		<form id="formDeliveryItem">
+			<!-- delivery item table -->
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+			<table class="table" id="dtDeliveryItems">
+				<tr>
+					<th>ID</th>
+					<th>Item Name</th>
+					<th>Description</th>
+					<th>Unit</th>
+					<th>Quantity</th>
+					<th>Price</th>
+					<th>Quantity Delivered</th>
+					<th>Action</th>
+				</tr>
+			</table>
+		</form>
+		<!-- pagination -->
+		<ul class="pager" id="paginationDeliveryItems"></ul>
+		<button form="formDeliveryItem" type="submit">Save Items</button>
+	</div>
+
+	<div class="modal" id="modalPoItems">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">
+						Purchase Order <span id="poNo"
+							th:text="${delivery.purchaseOrder.poNo}"></span>
+					</h4>
+					<p>
+						Purchase Request: <span
+							th:text="${delivery.purchaseOrder.quotation.purchaseRequest.prNo}"></span><br />
+						Date: <span th:text="${delivery.purchaseOrder.date}"></span><br />
+						Supplier: <span
+							th:text="${delivery.purchaseOrder.quotation.supplier.supplierName}"></span>
+					</p>
+				</div>
+				<!-- end modal header -->
+				<div class="modal-body">
+					<!-- select  page size -->
+					<label for="selectPageSizePo">Show</label> <select
+						id="selectPageSizePo">
+						<option>5</option>
+						<option>10</option>
+						<option selected="selected">20</option>
+						<option>50</option>
+					</select><span>entries</span>
+
+					<form id="formPoItems">
+						<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+						<!-- table -->
+						<table class="table" id="dtPoItems">
+							<tr>
+								<th></th>
+								<th>ID</th>
+								<th>Item Name</th>
+								<th>Description</th>
+								<th>Unit</th>
+								<th>Quantity</th>
+								<th>Price</th>
+							</tr>
+						</table>
+					</form>
+					<!-- pagination -->
+					<ul class="pager" id="paginationPo"></ul>
+
+				</div>
+				<!-- end modal body -->
+				<div class="modal-footer">
+					<button type="submit" form="formPoItems">Add Items</button>
+				</div>
+				<!-- end modal footer -->
+			</div>
+		</div>
+		<!-- end modal dialog -->
+	</div>
+	<!-- end modal -->
+
+	<!-- Bootstrap -->
+	<script type="text/javascript" th:src="@{/jquery-3.2.1.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+
+	<script type="module" th:src="@{/js/delivery.js}"></script>
+
+</body>
+</html>

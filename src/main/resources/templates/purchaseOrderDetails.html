@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title th:text="${'Purchase Order '+po.poNo+' Details'}"></title>
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" />
+<meta id="_csrf_token" name="_csrf_token" th:content="${_csrf.token}" />
+</head>
+<body>
+	<div class="container">
+	<h1>Purchase Order <span th:text="${po.poNo}" id="poNo"></span></h1>
+	<!-- purchase order form -->
+	<form id="formPo">
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+		<div>
+			<label for="date" >Date</label>
+			<input type="date" th:field="${po.date}" />
+		</div>
+	</form>
+	
+		<!-- Modal button -->
+	<button type="button" data-toggle="modal" data-target="#quotationItemModal">Add Items</button><br />
+	
+	<!-- po page size -->
+	<label for="selectPageSizePurchaseOrderItems">Show</label>
+	<select id="selectPageSizePurchaseOrderItems">
+		<option>5</option>
+		<option>10</option>
+		<option selected="selected">20</option>
+		<option>50</option>
+	</select><span>entries</span>
+
+	<form>
+		<!-- po table -->
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+		<table class="table" id="dtPurchaseOrderItems">
+			<tr>
+				<th>ID</th>
+				<th>Item Name</th>
+				<th>Description</th>
+				<th>Unit</th>
+				<th>Quantity</th>
+				<th>Price</th>
+				<th>Action</th>
+			</tr>
+		</table>
+	</form>
+	<button type="submit" form="formPo">Save Purchase Order</button>
+	<!-- pagination -->
+	<ul class="pager" id="poItemPagination"></ul>
+	</div>
+	<!-- Modal -->
+	<div id="quotationItemModal" class="modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Purchase Request Number: <span th:text="${po.quotation.purchaseRequest.prNo}"></span></h4>
+					<p>Quotation date: <span th:text="${po.quotation.quotationDate}"></span><br />
+					Supplier: <span th:text="${po.quotation.supplier.supplierName}"></span></p>
+				</div><!-- end modal header -->
+				<div class="modal-body">				
+					<!-- Select page size -->
+					<label for="selectQuotationItemsPageSize">Show</label>
+					<select id="selectQuotationItemsPageSize">
+						<option>5</option>
+						<option>10</option>
+						<option selected="selected">20</option>
+						<option>50</option>
+					</select><span>Entries</span><br />
+					<input type="hidden" th:field="${po.quotation.id}" />
+					<form id="formAddItems">
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+					<input type="hidden" th:field="${po.poNo}" />
+					<!-- quotation items -->
+					<table id="dtQuotationItems" class="table">
+						<tr>
+							<th></th>
+							<th>ID</th>
+							<th>Item Name</th>
+							<th>Description</th>
+							<th>Unit</th>
+							<th>Quantity</th>
+							<th>Price</th>
+						</tr>
+					</table>
+					</form>
+					
+					<!-- pagination -->
+					<ul class="pager" id="pagination"></ul>
+					
+				</div><!-- end div body -->
+				<div class="modal-footer">
+					<button class="submit" form="formAddItems">Add Items</button>
+				</div><!-- end div footer -->
+			</div><!-- end modal content -->
+		</div><!-- end modal dialog -->	
+	</div><!-- end div modal -->
+	
+	<!-- bootstrap -->
+		<script type="text/javascript" th:src="@{/jquery-3.2.1.min.js}"></script>
+	<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+
+	<script type="module" th:src="@{/js/purchaseOrderDetails.js}"></script>
+
+</body>
+</html>

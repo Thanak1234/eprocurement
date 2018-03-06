@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>New Purchase Request</title>
+</head>
+<body>
+	<!-- Form -->
+	<form method="post" th:object="${purchaseRequest}" th:action="@{/pr/save}">
+		<div>
+			<label for="prNo">P.R. Number</label> 
+			<input th:field="*{prNo}"/>
+		</div>
+		<div>
+			<label for="department">Department</label> <select
+				th:field="*{department}">
+				<option value="">Select Department</option>
+				<option th:each="department : ${departments}"
+					th:value="${department.id}" th:text="${department.departmentName}"></option>
+			</select>
+		</div>
+		 <div>
+			<label for="modeOfProcurement">Mode of Procurement</label>
+		 	<select th:field="*{modeOfProcurement}">
+		 		<option value=" ">Select Mode of Procurement</option>
+		 		<option value="Public Bidding">Public Bidding</option>
+		 		<option value="Small Value Procurement">Small Value Procurement</option>
+		 		<option value="Shopping">Shopping</option>
+		 	</select>
+		 </div>
+		<div>
+			<label for="purpose">Purpose</label><br />
+			<textarea rows="5" cols="50" th:field="*{purpose}"></textarea>
+		</div>
+		<input type="submit" value="Save" />
+	</form>
+</body>
+</html>

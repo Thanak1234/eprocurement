@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Manage Purchase Request</title>
+<!-- bootstrap -->
+<link rel="stylesheet" type="text/css"
+	th:href="@{/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+
+	<div class="container">
+		<a th:href="@{/pr/new}">New Purchase Request</a><br />
+		<!-- Search -->
+		<label for="search">Search Purchase Request</label><input type="search" name="search"
+			id="inputPrSearch" />
+		<button id="btnSearch" disabled="disabled">Search</button>
+		<br /> <label>Department</label> <select id="selectDepartment">
+			<option value="" selected="selected">All
+				Departments</option>
+			<option th:each="department : ${departments}"
+				th:value="${department.id}" th:text="${department.departmentName}"></option>
+		</select>
+		<br /> <label for="startDate">Date from</label> <input type="date"
+			name="startDate" id="inputStartDate" /> <label for="endDate">to</label>
+		<input type="date" name="endDate" id="inputEndDate" /><br />
+
+		<!-- Page size -->
+		<label for="selectPageSize">Show</label> <select id="selectPageSize">
+			<option>5</option>
+			<option>10</option>
+			<option selected="selected">20</option>
+			<option>50</option>
+		</select><span>entries</span><br />
+
+		<!-- total items text -->
+		<span id="txtTotalItems"></span>
+		<!-- Purchase Request Table -->
+		<table id="dtPuchaseRequestsTable" class="table">
+			<tr>
+				<th>Purchase Request Number</th>
+				<th>Department</th>
+				<th>Date</th>
+				<th>Mode of Procurement</th>
+				<th>Action</th>
+			</tr>
+		</table>
+		<span id="txtCurrentPage"></span>
+
+		<!-- pagination -->
+		<ul id="pagination" class="pager"></ul>
+
+	</div>
+
+	<!-- bootstrap -->
+	<script type="text/javascript" th:src="@{/jquery-3.2.1.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+
+	<script type="module" th:src="@{/js/purchaseRequests.js}"></script>
+
+</body>
+</html>

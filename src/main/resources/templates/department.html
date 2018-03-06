@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${#strings.isEmpty(department.id) ? 'New Department' : 'Update Department '+ department.id }"></title>
+</head>
+<body>
+	<!-- Department form -->
+	<form method="post" th:object="${department}">
+		<p>
+			<label for="departmentName">Department Name</label>
+			<input type="text" th:field="*{departmentName}" th:required="required"/>
+		</p>
+		<p>
+			<label for="departmentHead">Department Head</label>
+			<input type="text" th:field="*{departmentHead}" th:required="required" />
+		</p>
+		<input type="submit" value="submit" />
+	</form>
+  
+</body>
+</html>

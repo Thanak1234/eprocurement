@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Insert title here</title>
+</head>
+<body>
+	<form name="registrationForm" method="post" th:object="${user}" id="registrationForm" th:action="@{/user/save}">
+		<input type="hidden" th:field="*{id}" />
+		<!-- Personal Information -->
+		<fieldset>
+		<legend>Personal Information</legend>
+		<div>
+			<label for="firstName">Full Name</label>
+			<input type="text" th:field="*{firstName}"  th:required="required" />
+		</div>
+		<div>
+			<label for="lastName">last Name</label>
+			<input type="text" th:field="*{lastName}"  th:required="required" />
+		</div>
+		<div>
+			<label for="department">Department</label>
+			<select th:field="*{department}">
+				<option value="">Select Department</option>
+				<option th:each="department : ${departments}" th:value="${department.id}" th:text="${department.departmentName}" ></option>
+			</select>
+		</div>
+		
+		</fieldset>
+		<!-- Account Information -->
+		<fieldset>
+		<legend>Account Information</legend>
+		<div>
+			<label for="username">User Name</label>
+			<input type="text"  th:field="*{username}" name="username" th:required="required" />
+			<span th:text="${userValidation}"></span>
+		</div>
+		<div>
+			<label for="password">Password</label>
+			<input type="password" th:field="*{password}" name="password" th:required="required" />
+		</div>
+		<div>
+			<label for="confirmPassword">Confirm Password</label>
+			<input type="password" name="confirmPassword" th:required="required" />
+			<span id="errorMessage"></span>
+		</div>
+		<div>
+			<label for="enabled">Account Enabled</label>
+			<select th:field="*{enabled}">
+				<option value="true">True</option>
+				<option value="false">False</option>
+			</select>
+		</div>	
+		<div>
+			<label for="role">Account Type</label>
+			<select th:field="*{role}">
+				<option value="USER">USER</option>
+				<option value="ADMIN">ADMIN</option>
+			</select>
+		</div>
+		</fieldset>	
+		<input type="submit" name="submit" value="Submit" />
+	</form>
+
+<script type="text/javascript" th:src="@{/js/validation.js}"></script>
+</body>
+</html>

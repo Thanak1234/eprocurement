@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title th:text="${'Purchase Request '+pr.prNo+' Details'}"></title>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/bootstrap/css/bootstrap.min.css}" />
+<meta id="_csrf_token" name="_csrf_token" th:content="${_csrf.token}" />
+</head>
+<body>
+	<div class="container">
+	<h1 th:text="'Purchase Request '+${pr.prNo}"></h1>
+	<form id="formPr">
+		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+		<div>
+			<label for="department">Department</label>
+			<select  id="department" th:field="${pr.department.id}" >
+				<option value="">Select Department</option>
+				<option th:each="department : ${departments}" th:value="${department.id}" th:text="${department.departmentName}"></option>
+			</select>
+		</div>
+		<div >
+			<label for="prDate">Date</label>
+			<input type="date"  th:field="${pr.prDate}"  />
+		</div>
+		<div >
+			<label for="modeOfProcurement">Mode of Procurement</label>
+
+			<select th:field="${pr.modeOfProcurement}" >
+				<option value="">Select Mode of Procurement</option>
+		 		<option value="Public Bidding">Public Bidding</option>
+		 		<option value="Small Value Procurement">Small Value Procurement</option>
+		 		<option value="Shopping">Shopping</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="purpose">Purpose</label><br />
+			<textarea rows="2" cols="50" th:field="${pr.purpose}"></textarea>
+		</div>
+	</form>
+		
+	<!-- modal button -->
+	<button type="button" data-toggle="modal" data-target="#prModal">Select Items</button><br />
+	
+	<!-- pr item page size -->
+	<label for="selectPrItemPageSize">Show</label>
+	<select id="selectPrItemPageSize">
+		<option>5</option>
+		<option>10</option>
+		<option selected="selected">20</option>
+		<option>50</option>	
+	</select><span> entries</span><br />
+	
+	<!-- table form -->
+	<form id="formPrItems">
+	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+	<table id="dtRemove" class="table">
+		<tr>
+			<th>ID</th>
+			<th>Item Name</th>
+			<th>Description</th>
+			<th>Unit</th>
+			<th>Quantity</th>		
+			<th>Action</th>
+		</tr>
+	</table>
+	</form>
+	<input type="submit" value="Save Items" form="formPrItems"/>
+	<input type="submit" value="Save Purchase Request" form="formPr" />
+	<ul id="itemspagination" class="pager"></ul>
+	</div>
+	
+	<div id="prModal" class="modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Select Items</h4>
+				</div><!-- end header -->
+				<div class="modal-body">
+
+					<!-- Search form -->
+					<label for="selectSearchBy">Search by</label> <select
+						name="selectSearchBy" id="selectSearchBy">
+						<option selected="selected" disabled="disabled">Select
+							column</option>
+						<option value="name">Name</option>
+						<option value="description">Description</option>
+					</select> <input type="search" name="searchValue" id="inputSearch"
+						disabled="disabled" />
+					<button id="btnSearch" disabled="disabled" type="button">
+						<span class=" glyphicon glyphicon-search"></span>
+					</button>
+					<br />
+
+					<!-- Page size controls -->
+					<label for="selectPageSize">Show</label> 
+					<select	id="selectPageSize">
+						<option>5</option>
+						<option>10</option>
+						<option selected="selected">20</option>
+						<option>50</option>
+					</select> <span>entries</span><br />
+					
+					<!-- Table -->
+					<form id="formAddItems">
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+					<input type="hidden" name="pr" th:value="${pr.prNo}" id="txtPRNo" />
+					<table id="dtSelection" class="table">
+						<tr>
+							<th></th>
+							<th>ID</th>
+							<th>Item Name</th>
+							<th>Description</th>
+						</tr>
+					</table>
+					</form>
+					
+					<!-- Pagination -->
+					<ul id="pagination" class="pager"></ul>					
+				</div><!-- end body -->	
+				<div class="modal-footer">
+					<button type="submit" form="formAddItems">Add Items</button>
+				</div>
+			</div><!-- end modal content -->
+		</div><!-- end modal dialog -->		
+	</div><!-- end modal -->
+	
+	
+	<script type="module" th:src="@{/js/prItems.js}"></script>
+
+	<!-- bootstrap -->
+	<script th:src="@{/jquery-3.2.1.min.js}" type="text/javascript"></script>
+	<script th:src="@{/bootstrap/js/bootstrap.min.js}"
+		type="text/javascript"></script>
+
+</body>
+</html>

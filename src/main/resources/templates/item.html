@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title th:text="${#strings.isEmpty(item.id) ? 'New Item' : 'Update Item '+item.id}"></title>
+  </head>
+  <body>
+  	<!-- Item form  -->
+	<form method="post" th:object="${item}" th:action="@{/item/save}">
+		<input type="hidden" th:field="*{id}" />
+		<p>
+			<label for="name">Name</label> 
+			<input type="text" th:field="*{name}" />
+		</p>
+		<p>
+			<label for="desc">Description</label> <br />
+			<textarea cols="20" rows="5" th:field="*{description}"></textarea>
+		</p>
+			<input type="submit" name="submit" value="Submit" />
+	</form>
+</body>
+</html>
+
