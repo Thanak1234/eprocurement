@@ -43,7 +43,7 @@ public class DepartmentController {
 	}
 	
 	//save new department
-	@PostMapping("/new")
+	@PostMapping("/save")
 	public String saveNewDepartment(@ModelAttribute Department department) {
 		departmentRepository.save(department);
 		return "redirect:/department";
@@ -56,11 +56,6 @@ public class DepartmentController {
 		return "department";
 	}
 	
-	//update department
-	@PostMapping("/{id}")
-	public String updateDepartment(@ModelAttribute Department department) {
-		departmentRepository.save(department);
-		return "redirect:/department";
-	}
+	
 
 }

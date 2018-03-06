@@ -5,7 +5,8 @@
 </head>
 <body>
 	<!-- Department form -->
-	<form method="post" th:object="${department}">
+	<form method="post" th:object="${department}" th:action="@{/department/save}">
+		<input type="hidden" th:field="*{id}" />
 		<p>
 			<label for="departmentName">Department Name</label>
 			<input type="text" th:field="*{departmentName}" th:required="required"/>
