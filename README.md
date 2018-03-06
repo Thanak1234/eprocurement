@@ -1,1 +1,6 @@
-# eprocurement
+# Eprocurement
+
+#Technology Stack
+
+Springboot
+MySQL
