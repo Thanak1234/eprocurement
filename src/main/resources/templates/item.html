@@ -1,22 +1,55 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <title th:text="${#strings.isEmpty(item.id) ? 'New Item' : 'Update Item '+item.id}"></title>
-  </head>
-  <body>
-  	<!-- Item form  -->
-	<form method="post" th:object="${item}" th:action="@{/item/save}">
-		<input type="hidden" th:field="*{id}" />
-		<p>
-			<label for="name">Name</label> 
-			<input type="text" th:field="*{name}" />
-		</p>
-		<p>
-			<label for="desc">Description</label> <br />
-			<textarea cols="20" rows="5" th:field="*{description}"></textarea>
-		</p>
-			<input type="submit" name="submit" value="Submit" />
-	</form>
+<head>
+<title
+	th:text="${#strings.isEmpty(item.id) ? 'New Item' : 'Update Item '+item.id}"></title>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/bootstrap/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+</head>
+<body>
+	<nav th:include="index::nav"
+		class="nav navbar-default navbar-fixed-top"></nav>
+	<div class="container">
+		<div class="page-header">
+			<h1 th:text="${#strings.isEmpty(item.id) ? 'New Item' : 'Update Item '+item.id}"></h1>
+		</div>
+		<section>
+			<div class="container-fluid">
+				<!-- Item form  -->
+				<form method="post" th:object="${item}" th:action="@{/item/save}"
+					class="form-horizontal" action="">
+					<input type="hidden" th:field="*{id}" />
+					<div class="form-group">
+						<label for="name" class="col-sm-2 control-label">Name</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" th:field="*{name}"
+								placeholder="Item Name" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="desc" class="col-sm-2 control-label">Description</label>
+						<div class="col-sm-8">
+							<textarea class="form-control" rows="5" th:field="*{description}"
+								placeholder="Item Description" cols=""></textarea>
+						</div>
+					</div>
+					<div clas="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="submit" class="btn btn-default">Submit</button>
+						</div>
+					</div>
+				</form>
+
+
+
+			</div>
+		</section>
+	</div>
+	<!-- Bootstrap -->
+	<script type="text/javascript" th:src="@{/jquery-3.2.1.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>
 

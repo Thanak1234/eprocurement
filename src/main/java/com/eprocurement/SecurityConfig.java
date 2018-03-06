@@ -34,8 +34,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.formLogin()
 			.and()
 			.authorizeRequests()
-				.antMatchers("/js/**","/bootstrap/**","/jquery-3.2.1").permitAll()
-				.antMatchers("/item/new","/item/all","/api/items","/item/save","/pr/new", "/api/pritems/**").hasAnyRole("ADMIN","USER")
+				.antMatchers("/js/**","/bootstrap/**","/css/**","/jquery-3.2.1.min.js").permitAll()
+				.antMatchers("/","/#","/item/new","/item/all","/api/items","/item/save","/pr/new", "/api/pritems/**").hasAnyRole("ADMIN","USER")
 				.anyRequest().hasRole("ADMIN");
 	}
 	

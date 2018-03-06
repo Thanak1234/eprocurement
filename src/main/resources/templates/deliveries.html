@@ -3,36 +3,38 @@
 <head>
 <title th:text="${'Purchase Order '+po.poNo+' Deliveries'}"></title>
 <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
 </head>
 <body>
 	
-	 <div class="container">
-		<h1>Purchase Order <span th:text="${po.poNo}" id="poNo"></span> Deliveries</h1>
-		
-		<a th:href="@{'/po/'+${po.poNo}+'/delivery/new'}">New Delivery</a><br />
-		
-		<!-- select page size -->
-		<label for="selectPageSize">Show</label>
-		<select id="selectPageSize">
-			<option>5</option>
-			<option>10</option>
-			<option selected="selected">20</option>
-			<option>50</option>
-		</select><span>entries</span>
-		
-		<!-- deliveries table -->
-		<table id="dtDeliveries" class="table">
-			<tr>
-				<th>ID</th>
-				<th>Date</th>
-				<th>Action</th>
-			</tr>
-		</table>
-		
-		<!-- pagination -->
-		<ul class="pager" id="pagination"></ul>
-	</div>
-	
+	<section>
+		 <div class="container">
+			<h1>Purchase Order <span th:text="${po.poNo}" id="poNo"></span> Deliveries</h1>
+			
+			<a th:href="@{'/po/'+${po.poNo}+'/delivery/new'}">New Delivery</a><br />
+			
+			<!-- select page size -->
+			<label for="selectPageSize">Show</label>
+			<select id="selectPageSize">
+				<option>5</option>
+				<option>10</option>
+				<option selected="selected">20</option>
+				<option>50</option>
+			</select><span>entries</span>
+			
+			<!-- deliveries table -->
+			<table id="dtDeliveries" class="table">
+				<tr>
+					<th>ID</th>
+					<th>Date</th>
+					<th>Action</th>
+				</tr>
+			</table>
+			
+			<!-- pagination -->
+			<ul class="pager" id="pagination"></ul>
+		</div>
+	</section>
 	<!-- Bootstrap -->
 	<script type="text/javascript" th:src="@{/jquery-3.2.1.min.js}"></script>
 	<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
