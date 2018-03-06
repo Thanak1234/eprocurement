@@ -5,10 +5,12 @@
 <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" />
 </head>
 <body>
-<div class="container">
+
+	<div class="page-header">
+		<h1>Purchase Request <span id="txtPrNo" th:text="${pr.prNo}"></span> Quotations</h1>
+	</div>
 	
-	<h1>Purchase Request <span id="txtPrNo" th:text="${pr.prNo}"></span> Quotations</h1>
-	
+	<div class="container">
 	<a data-toggle="modal" href="#modalNewQuotation">New Quotation</a><br />
 	
 	<!-- page size -->

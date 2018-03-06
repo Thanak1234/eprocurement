@@ -3,16 +3,19 @@
 <head>
 <title th:text="${'Purchase Order '+po.poNo+' Deliveries'}"></title>
 <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" />
-<link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
 </head>
 <body>
 	
-	<section>
-		 <div class="container">
-			<h1>Purchase Order <span th:text="${po.poNo}" id="poNo"></span> Deliveries</h1>
-			
+	<nav th:include="index::nav"
+		class="nav navbar-default navbar-fixed-top"></nav>
+	
+	<div class="page-header container">
+		<h1>Purchase Order <span th:text="${po.poNo}" id="poNo"></span> Deliveries</h1>
+	</div>
+	
+	<section class="container">		
 			<a th:href="@{'/po/'+${po.poNo}+'/delivery/new'}">New Delivery</a><br />
-			
+		
 			<!-- select page size -->
 			<label for="selectPageSize">Show</label>
 			<select id="selectPageSize">
@@ -33,7 +36,7 @@
 			
 			<!-- pagination -->
 			<ul class="pager" id="pagination"></ul>
-		</div>
+					
 	</section>
 	<!-- Bootstrap -->
 	<script type="text/javascript" th:src="@{/jquery-3.2.1.min.js}"></script>

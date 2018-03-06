@@ -5,47 +5,54 @@
 <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" />
 </head>
 <body>
-	<div class="container">
-	<a th:href="@{/department/new}">New Deparment</a><br />
-	
-	<!-- Search controls -->
-	<label for="selectSearchBy">Search by</label>
-	<select name="selectSearchBy" id="selectSearchBy">
-		<option selected="selected" disabled="disabled">Select column</option>
-		<option value="departmentName">Department Name</option>
-		<option value="departmentHead">Department Head</option>
-	</select>
-	<input type="search" name="searchValue" id="inputSearch" disabled="disabled" />
-		<button type="button" id="btnSearch" disabled="disabled"><span class=" glyphicon glyphicon-search"></span></button>
-	<br />
-	
-	<!-- Page size -->
-	<label for="selectPageSize">Show</label>
-	<select id="selectPageSize">
-		<option>5</option>
-		<option>10</option>
-		<option selected="selected">20</option>
-		<option>50</option>
-	</select>
-	<span>entries</span><br />
-	
-	<!-- Table-->
-	<span id="txtTotalItems"></span>
-	<table id="dtUpdatable" class="table">
-		<tr>
-			<th>ID</th>
-			<th>Department Name</th>
-			<th>Department Head</th>
-			<th>Action</th>
-		</tr>
-	</table>
-	
-	<!-- Pagination -->
-	<ul id="pagination" class="pagination"></ul><br />
-	
-	<span id="txtCurrentPage"></span>
+	<nav class="nav navbar-default navbar-fixed-top"
+		th:include="index::nav"></nav>
+
+	<div class="page-header container">
+		<h1>Manage Departments</h1>
 	</div>
-	
+	<section class="container">
+		<a th:href="@{/department/new}">New
+			Deparment</a><br />
+
+		<!-- Search controls -->
+		<label for="selectSearchBy">Search by</label> <select
+			name="selectSearchBy" id="selectSearchBy">
+			<option selected="selected" disabled="disabled">Select
+				column</option>
+			<option value="departmentName">Department Name</option>
+			<option value="departmentHead">Department Head</option>
+		</select> <input type="search" name="searchValue" id="inputSearch"
+			disabled="disabled" />
+		<button type="button" id="btnSearch" disabled="disabled">
+			<span class=" glyphicon glyphicon-search"></span>
+		</button>
+		<br />
+
+		<!-- Page size -->
+		<label for="selectPageSize">Show</label> <select id="selectPageSize">
+			<option>5</option>
+			<option>10</option>
+			<option selected="selected">20</option>
+			<option>50</option>
+		</select> <span>entries</span><br />
+
+		<!-- Table-->
+		<table id="dtUpdatable" class="table">
+			<tr>
+				<th>ID</th>
+				<th>Department Name</th>
+				<th>Department Head</th>
+				<th>Action</th>
+			</tr>
+		</table>
+
+		<!-- Pagination -->
+		<ul id="pagination" class="pager"></ul>
+		<br />
+	</section>
+
+
 	<!-- Bootstrap -->
 	<script type="text/javascript" th:src="@{/jquery-3.2.1.min.js}"></script>
 	<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>

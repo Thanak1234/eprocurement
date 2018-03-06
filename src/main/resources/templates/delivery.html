@@ -3,15 +3,20 @@
 <head>
 <title th:text="${'Delivery '+delivery.id+' Items'}"></title>
 <meta id="_csrf_token" name="_csrf_token" th:content="${_csrf.token}" />
-<link rel="stylesheet" type="text/css"
-	th:href="@{/bootstrap/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" />
 </head>
 <body>
-
-	<div class="container">
+		
+	<nav th:include="index :: nav" class="nav navbar-default navbar-fixed-top"></nav>
+	
+	<div class="page-header container">
 		<h1>
 			Delivery <span id="deliveryid" th:text="${delivery.id}"></span>
 		</h1>
+	</div>
+
+	<div class="container">
+		
 
 		<button data-toggle="modal" data-target="#modalPoItems">Select
 			Items</button>
@@ -44,7 +49,7 @@
 		</form>
 		<!-- pagination -->
 		<ul class="pager" id="paginationDeliveryItems"></ul>
-		<button form="formDeliveryItem" type="submit">Save Items</button>
+		<button form="formDeliveryItem" type="submit" class="btn btn-default">Save Items</button>
 	</div>
 
 	<div class="modal" id="modalPoItems">
@@ -97,7 +102,7 @@
 				</div>
 				<!-- end modal body -->
 				<div class="modal-footer">
-					<button type="submit" form="formPoItems">Add Items</button>
+					<button type="submit" form="formPoItems" class="btn btn-primary">Add Items</button>
 				</div>
 				<!-- end modal footer -->
 			</div>
