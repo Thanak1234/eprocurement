@@ -6,59 +6,62 @@
 <meta id="_csrf_token" name="_csrf_token" th:content="${_csrf.token}" />
 </head>
 <body>
+	
+	<nav class="nav navbar-default navbar-fixed-top" th:include="index::nav"></nav>
+	
+	<div class="container page-header">
+		<h1 th:text="${'Quotation '+quotation.id+' items'}"></h1>
+	</div>
 
-<div class="container">
-
-	<h1 th:text="${'Quotation '+quotation.id+' items'}"></h1>
-
-	<form id="formQuotation">
+	<div class="container">
+		<form id="formQuotation">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+			<div> 
+				<label for="supplier">Supplier</label>
+				<select th:field="${quotation.supplier.id}">
+					<option value="">Select Supplier</option>
+					<option th:each="supplier: ${suppliers}" th:value="${supplier.id}" th:text="${supplier.supplierName}"></option>
+				</select>
+			</div>
+			<div>
+				<label for="quotationDate">Date</label>
+				<input type="date" th:field="${quotation.quotationDate}" />
+			</div>
+		</form>
+	
+		<button type="button" data-toggle="modal" data-target="#prItemsModal">Select Items</button><br/>
+		
+		<!-- Page size -->
+		<label for="selectPageSizeQuotationItems">Show</label>
+		<select id="selectPageSizeQuotationItems">
+			<option>5</option>
+			<option>10</option>
+			<option selected="selected">20</option>
+			<option>50</option>
+		</select>
+		<span>entries</span><br />
+		
+		<!-- quotation items -->
+		<form id="formQuotationItems">
 		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-		<div> 
-			<label for="supplier">Supplier</label>
-			<select th:field="${quotation.supplier.id}">
-				<option value="">Select Supplier</option>
-				<option th:each="supplier: ${suppliers}" th:value="${supplier.id}" th:text="${supplier.supplierName}"></option>
-			</select>
-		</div>
-		<div>
-			<label for="quotationDate">Date</label>
-			<input type="date" th:field="${quotation.quotationDate}" />
-		</div>
-	</form>
-
-	<button type="button" data-toggle="modal" data-target="#prItemsModal">Select Items</button><br/>
-	
-	<!-- Page size -->
-	<label for="selectPageSizeQuotationItems">Show</label>
-	<select id="selectPageSizeQuotationItems">
-		<option>5</option>
-		<option>10</option>
-		<option selected="selected">20</option>
-		<option>50</option>
-	</select>
-	<span>entries</span><br />
-	
-	<!-- quotation items -->
-	<form id="formQuotationItems">
-	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-	<table class="table" id="dtQuotationItems">
-		<tr>
-			<th>ID</th>
-			<th>Item Name</th>
-			<th>Description</th>
-			<th>Unit</th>
-			<th>Quantity</th>
-			<th>Price</th>
-			<th>Action</th>
-		</tr>	
-	</table>
-	
-	</form>
-	<input type="submit" value="Save Items" form="formQuotationItems"/>
-	<button type="submit" form="formQuotation">Save Quotation</button>
-	<!-- pagination -->
-	<ul class="pager" id="paginationQuotationItems"></ul>
-	
+		<table class="table" id="dtQuotationItems">
+			<tr>
+				<th>ID</th>
+				<th>Item Name</th>
+				<th>Description</th>
+				<th>Unit</th>
+				<th>Quantity</th>
+				<th>Price</th>
+				<th>Action</th>
+			</tr>	
+		</table>
+		
+		</form>
+		<button type="submit" form="formQuotationItems" class="btn btn-default">Save Items</button>
+		<button type="submit" form="formQuotation" class="btn btn-primary">Save Quotation</button>
+		<!-- pagination -->
+		<ul class="pager" id="paginationQuotationItems"></ul>
+	</div>
 	<!-- Modal -->
 	<div id="prItemsModal" class="modal">
 		<div class="modal-dialog">
@@ -97,12 +100,12 @@
 				</div>
 				<!-- end body -->
 				<div class="modal-footer">
-				<input type="submit" value="Add Items" form="formAddItems" />
+				<button type="submit" form="formAddItems" class="btn btn-primary">Add Items</button>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
+
 
 <!-- Bootstrap -->
 <script type="text/javascript" th:src="@{/jquery-3.2.1.min.js}"></script>

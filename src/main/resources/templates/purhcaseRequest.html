@@ -2,15 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>New Purchase Request</title>
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" />
 </head>
 <body>
+	<nav class="nav navbar-default navbar-fixed-top" th:include="index::nav"></nav>
+	<div class="container page-header">
+		<h1>New Puchase Request</h1>
+	</div>
+	<div class="container">
 	<!-- Form -->
 	<form method="post" th:object="${purchaseRequest}" th:action="@{/pr/save}">
-		<div>
+		<div class="form-group">
 			<label for="prNo">P.R. Number</label> 
-			<input th:field="*{prNo}"/>
+			<input th:field="*{prNo}" placeholder="P.R. Number"/>
 		</div>
-		<div>
+		<div class="form-group">
 			<label for="department">Department</label> <select
 				th:field="*{department}">
 				<option value="">Select Department</option>
@@ -18,7 +24,7 @@
 					th:value="${department.id}" th:text="${department.departmentName}"></option>
 			</select>
 		</div>
-		 <div>
+		 <div class="form-group">
 			<label for="modeOfProcurement">Mode of Procurement</label>
 		 	<select th:field="*{modeOfProcurement}">
 		 		<option value=" ">Select Mode of Procurement</option>
@@ -27,11 +33,16 @@
 		 		<option value="Shopping">Shopping</option>
 		 	</select>
 		 </div>
-		<div>
+		<div class="form-group">
 			<label for="purpose">Purpose</label><br />
-			<textarea rows="5" cols="50" th:field="*{purpose}"></textarea>
+			<textarea rows="5" cols="80" th:field="*{purpose}" placeholder="Purpose"></textarea>
 		</div>
-		<input type="submit" value="Save" />
+		<button type="submit" class="btn btn-default">Submit</button>
 	</form>
+	</div>
+	
+	<script type="text/javascript" th:src="@{/jquery-3.2.1.min.js}"></script>
+	<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+	
 </body>
 </html>

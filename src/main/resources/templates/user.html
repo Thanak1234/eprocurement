@@ -1,66 +1,82 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Insert title here</title>
+<title th:text="${#strings.isEmpty(user.id) ? 'New User' : 'Update User '+ user.id}"></title>
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" />
 </head>
 <body>
-	<form name="registrationForm" method="post" th:object="${user}" id="registrationForm" th:action="@{/user/save}">
-		<input type="hidden" th:field="*{id}" />
-		<!-- Personal Information -->
-		<fieldset>
-		<legend>Personal Information</legend>
-		<div>
-			<label for="firstName">Full Name</label>
-			<input type="text" th:field="*{firstName}"  th:required="required" />
-		</div>
-		<div>
-			<label for="lastName">last Name</label>
-			<input type="text" th:field="*{lastName}"  th:required="required" />
-		</div>
-		<div>
-			<label for="department">Department</label>
-			<select th:field="*{department}">
-				<option value="">Select Department</option>
-				<option th:each="department : ${departments}" th:value="${department.id}" th:text="${department.departmentName}" ></option>
-			</select>
-		</div>
-		
-		</fieldset>
-		<!-- Account Information -->
-		<fieldset>
-		<legend>Account Information</legend>
-		<div>
-			<label for="username">User Name</label>
-			<input type="text"  th:field="*{username}" name="username" th:required="required" />
-			<span th:text="${userValidation}"></span>
-		</div>
-		<div>
-			<label for="password">Password</label>
-			<input type="password" th:field="*{password}" name="password" th:required="required" />
-		</div>
-		<div>
-			<label for="confirmPassword">Confirm Password</label>
-			<input type="password" name="confirmPassword" th:required="required" />
-			<span id="errorMessage"></span>
-		</div>
-		<div>
-			<label for="enabled">Account Enabled</label>
-			<select th:field="*{enabled}">
-				<option value="true">True</option>
-				<option value="false">False</option>
-			</select>
-		</div>	
-		<div>
-			<label for="role">Account Type</label>
-			<select th:field="*{role}">
-				<option value="USER">USER</option>
-				<option value="ADMIN">ADMIN</option>
-			</select>
-		</div>
-		</fieldset>	
-		<input type="submit" name="submit" value="Submit" />
-	</form>
+	
+	<nav class="nav navbar-default navbar-fixed-top" th:include="index::nav"></nav>
+	
+	<div class="container page-header">
+		<h1 th:text="${#strings.isEmpty(user.id) ? 'New User' : 'Update User '+ user.id}"></h1>
+	</div>
 
-<script type="text/javascript" th:src="@{/js/validation.js}"></script>
+	<div class="container">
+		<form name="registrationForm" method="post" th:object="${user}"
+			id="registrationForm" th:action="@{/user/save}" action="">
+			<input type="hidden" th:field="*{id}" />
+			<!-- Personal Information -->
+			<fieldset>
+				<legend>Personal Information</legend>
+				<div>
+					<label for="firstName">First Name</label> <input type="text"
+						th:field="*{firstName}" th:required="required" placeholder="First Name" />
+				</div>
+				<div>
+					<label for="lastName">last Name</label> <input type="text"
+						th:field="*{lastName}" th:required="required" placeholder="Last Name"/>
+				</div>
+				<div>
+					<label for="department">Department</label> <select
+						th:field="*{department}">
+						<option value="">Select Department</option>
+						<option th:each="department : ${departments}"
+							th:value="${department.id}"
+							th:text="${department.departmentName}"></option>
+					</select>
+				</div>
+
+			</fieldset>
+			<!-- Account Information -->
+			<fieldset>
+				<legend>Account Information</legend>
+				<div>
+					<label for="username">User Name</label> <input type="text"
+						th:field="*{username}" name="username" th:required="required" placeholder="User Name"/>
+					<span th:text="${userValidation}"></span>
+				</div>
+				<div>
+					<label for="password">Password</label> <input type="password"
+						th:field="*{password}" name="password" th:required="required" placeholder="Password" />
+				</div>
+				<div>
+					<label for="confirmPassword">Confirm Password</label> <input
+						type="password" name="confirmPassword" th:required="required" placeholder="Confirm Password"/>
+					<span id="errorMessage"></span>
+				</div>
+				<div>
+					<label for="enabled">Account Enabled</label> <select
+						th:field="*{enabled}">
+						<option value="true">True</option>
+						<option value="false">False</option>
+					</select>
+				</div>
+				<div>
+					<label for="role">Account Type</label> <select th:field="*{role}">
+						<option value="USER">USER</option>
+						<option value="ADMIN">ADMIN</option>
+					</select>
+				</div>
+			</fieldset>
+			<input type="submit" name="submit" value="Submit" />
+		</form>
+	</div>
+	
+	<!-- Bootstrap -->
+	<script type="text/javascript" th:src="@{/jquery-3.2.1.min.js}"></script>
+	<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+	
+	<script type="text/javascript" th:src="@{/js/validation.js}"></script>
 </body>
 </html>

@@ -5,8 +5,10 @@
 <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" />
 </head>
 <body>
-
-	<div class="page-header">
+	
+	<nav class="nav navbar-default navbar-fixed-top" th:include="index:: nav"></nav>
+	
+	<div class="page-header container">
 		<h1>Purchase Request <span id="txtPrNo" th:text="${pr.prNo}"></span> Quotations</h1>
 	</div>
 	

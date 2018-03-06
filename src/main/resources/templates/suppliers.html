@@ -6,6 +6,13 @@
 	th:href="@{/bootstrap/css/bootstrap.min.css}" />
 </head>
 <body>
+	
+	<nav class="nav navbar-default navbar-fixed-top" th:include="index::nav"></nav>
+	
+	<div class="container  page-header">
+		<h1>Manage Suppliers</h1>
+	</div>
+
 	<div class="container">
 		<a th:href="@{/supplier/new}">New Supplier</a><br />
 		<!-- Search form -->
