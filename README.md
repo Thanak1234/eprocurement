@@ -1,6 +1,8 @@
-# Eprocurement
+# Electronic Procurement System
 
-#Technology Stack
+# Technology Stack
+Spring
 
-Springboot
+Java
+
 MySQL
