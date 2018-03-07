@@ -16,7 +16,8 @@
 			<label for="prNo">P.R. Number</label> 
 			<input th:field="*{prNo}" placeholder="P.R. Number"/>
 		</div>
-		<div class="form-group">
+		<input type="hidden" name="department" th:value="${#authentication.getPrincipal().department.id}" sec:authorize="hasRole('ROLE_USER')" />
+		<div class="form-group" sec:authorize="hasRole('ROLE_ADMIN')">
 			<label for="department">Department</label> <select
 				th:field="*{department}">
 				<option value="">Select Department</option>

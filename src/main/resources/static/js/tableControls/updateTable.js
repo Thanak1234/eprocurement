@@ -5,6 +5,7 @@ import {loadData} from "./ajax.js";
 function renderUpdateTable(data){
 	//cache table
 	const table = document.getElementById("dtUpdatable");
+	const role = document.getElementById("role");
 	
 	//caption
 	table.deleteCaption();
@@ -21,12 +22,15 @@ function renderUpdateTable(data){
 			let cell = row.insertCell();
 			cell.textContent = data["content"][i][d];
 		}
-		let actionCell = row.insertCell();
-		let linkUpdate = document.createElement("a");
-		linkUpdate.href = `./${data["content"][i].id}`
-		linkUpdate.text = "Update";
-		linkUpdate.className="btn btn-default";
-		actionCell.appendChild(linkUpdate);
+		if(role.value == "[ROLE_ADMIN]"){
+			let actionCell = row.insertCell();
+			let linkUpdate = document.createElement("a");
+			linkUpdate.href = `./${data["content"][i].id}`
+			linkUpdate.text = "Update";
+			linkUpdate.className="btn btn-default";
+			actionCell.appendChild(linkUpdate);
+			
+		}
 	}		
 }
 

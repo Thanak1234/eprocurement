@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title></title>
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" />
+<style type="text/css">
+body {
+	padding-top:70px;
+}
+
+
+</style>
+</head>
+<body>
+
+<nav class="nav navbar-default navbar-fixed-top" th:include="index::nav"></nav>
+<div class="container">
+	<div class="jumbotron">
+		<h1>403</h1>
+		<h2>Access Denied</h2>
+	</div>
+</div>
+
+<!-- Bootstrap -->
+<script type="text/javascript" th:src="@{/jquery-3.2.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

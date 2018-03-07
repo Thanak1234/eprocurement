@@ -42,7 +42,7 @@
 				<th>ID</th>
 				<th>Item Name</th>
 				<th>Description</th>
-				<th>Action</th>
+				<th sec:authorize="hasRole('ROLE_ADMIN')">Action</th>
 			</tr>
 		</table>
 

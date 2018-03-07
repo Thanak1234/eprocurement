@@ -15,19 +15,21 @@
 	<div class="container">
 		<a th:href="@{/pr/new}">New Purchase Request</a><br />
 		<!-- Search -->
-		<label for="search">Search Purchase Request</label><input type="search" name="search"
-			id="inputPrSearch" />
-		<button id="btnSearch" disabled="disabled">Search</button>
-		<br /> <label>Department</label> <select id="selectDepartment">
-			<option value="" selected="selected">All
-				Departments</option>
-			<option th:each="department : ${departments}"
-				th:value="${department.id}" th:text="${department.departmentName}"></option>
-		</select>
-		<br /> <label for="startDate">Date from</label> <input type="date"
-			name="startDate" id="inputStartDate" /> <label for="endDate">to</label>
-		<input type="date" name="endDate" id="inputEndDate" /><br />
-
+		<span class="form-group" sec:authorize="hasRole('ROLE_ADMIN')">
+			<label for="search">Search Purchase Request</label><input type="search" name="search"
+				id="inputPrSearch" />
+			<button id="btnSearch" disabled="disabled">Search</button>
+			<br /> <label>Department</label> <select id="selectDepartment">
+				<option value="" selected="selected">All
+					Departments</option>
+				<option th:each="department : ${departments}"
+					th:value="${department.id}" th:text="${department.departmentName}"></option>
+			</select>
+		</span>
+			<br /> <label for="startDate">Date from</label> <input type="date"
+				name="startDate" id="inputStartDate" /> <label for="endDate">to</label>
+			<input type="date" name="endDate" id="inputEndDate" /><br />
+		
 		<!-- Page size -->
 		<label for="selectPageSize">Show</label> <select id="selectPageSize">
 			<option>5</option>
@@ -60,7 +62,7 @@
 	<script type="text/javascript"
 		th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 
-	<script type="module" th:src="@{/js/purchaseRequests.js}"></script>
-
+	<script type="module" th:src="@{/js/purchaseRequests.js}" sec:authorize="hasRole('ADMIN')"></script>
+	<script type="module" th:src="@{/js/departmentPurchaseRequests.js}" sec:authorize="hasRole('USER')"></script>
 </body>
 </html>
