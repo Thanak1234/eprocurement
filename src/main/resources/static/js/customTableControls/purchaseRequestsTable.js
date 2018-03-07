@@ -5,7 +5,7 @@ import {loadData} from "../tableControls/ajax.js";
 //custom purchase requests table
 function renderPurchaseRequestsTableTable(data){
 	const table = document.getElementById("dtPuchaseRequestsTable");
-	
+	const role = document.getElementById("role");
 	table.deleteCaption();
 	let totalItems = table.createCaption();
 	totalItems.textContent = `${data["totalElements"]} ${data["totalElements"] > 1 ? "items" : "item"} found`;
@@ -35,17 +35,23 @@ function renderPurchaseRequestsTableTable(data){
 		prItemsLink.text = " Details";
 		prItemsLink.className = "btn btn-info";
 		
+		let span = document.createElement("span");
+		span.textContent = " ";
+		
+		
+		actionCell.appendChild(prItemsLink);
+		actionCell.appendChild(span);
+		
+		
+		if(role.value == "[ROLE_ADMIN]"){
 		let quotationLink = document.createElement("a");
 		quotationLink.href = `/pr/${data["content"][i]["prNo"]}/quotation/all`;
 		quotationLink.text = " Quotations";
 		quotationLink.className = "btn btn-primary";
-		
-		let span = document.createElement("span");
-		span.textContent = " ";
-		
-		actionCell.appendChild(prItemsLink);
-		actionCell.appendChild(span);
 		actionCell.appendChild(quotationLink);
+		}
+		
+		
 	}			
 }
 

@@ -35,7 +35,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.authorizeRequests()
 				.antMatchers("/js/**","/bootstrap/**","/css/**","/jquery-3.2.1.min.js").permitAll()
-				.antMatchers("/","/#","/item/new","/item/all","/api/items","/item/save","/pr/new","/pr/{pr}/details","/pr/save","/pr/all" ,"/api/pr/{department}","/api/pritems/**").hasAnyRole("ADMIN","USER")
+				.antMatchers("/","/#","/item/new","/item/all",
+							"/api/items","/item/save","/pr/new",
+							"/pr/{pr}/details","/pr/save","/pr/all" ,
+							"/api/pr/{department}/all","/api/pritems/**",
+							"/api/pr/{pr}"
+							).hasAnyRole("ADMIN","USER")
 				.anyRequest().hasRole("ADMIN")
 			.and()
 			.exceptionHandling().accessDeniedPage("/403");

@@ -23,7 +23,7 @@
 							<li><a th:href="@{/item/all}">Manage Items</a></li>
 							<li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/supplier/all}">Manage Suppliers</a></li>
 							<li><a th:href="@{/pr/all}">Manage Purchase Requests</a></li>
-							<li><a th:href="@{/po/all}">Manage Purchase Orders</a></li>
+							<li><a th:href="@{/po/all}" sec:authorize="hasRole('ROLE_ADMIN')">Manage Purchase Orders</a></li>
 						</ul>
 					</li>
 					<li class ="dropdown" sec:authorize="hasRole('ROLE_ADMIN')">

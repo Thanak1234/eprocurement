@@ -48,7 +48,7 @@ public class PurchaseRequestRestController {
 		return pagePR;
 	}
 	
-	@GetMapping("/api/pr/{department}")
+	@GetMapping("/api/pr/{department}/all")
 	public Page<PurchaseRequest> getPuchaseRequestByDepartment(@PathVariable Department department,
 			@RequestParam Date startDate, @RequestParam Date endDate, Pageable pageable){
 		return purchaseRequestRepository.findByDepartmentAndPrDateBetween(department, startDate, endDate, pageable);
