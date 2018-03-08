@@ -1,5 +1,6 @@
 package com.eprocurement;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.eprocurement.service.UserDetailsServiceImpl;
+import com.eprocurement.AdminProperties;
 
 @Configuration
 @EnableWebSecurity
@@ -30,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {	
 		http
-			.formLogin()
+			.formLogin().loginPage("/login").permitAll()
 			.and()
 			.authorizeRequests()
 				.antMatchers("/js/**","/bootstrap/**","/css/**","/jquery-3.2.1.min.js").permitAll()

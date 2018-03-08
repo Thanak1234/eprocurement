@@ -16,7 +16,7 @@ public class HomeController {
 		return "403";
 	}
 
-	@GetMapping("/loginn")
+	@GetMapping("/login")
 	public String loginPage() {
 		return "login";
 	}
