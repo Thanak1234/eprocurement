@@ -15,4 +15,9 @@ public class HomeController {
 	public String accessDenied() {
 		return "403";
 	}
+
+	@GetMapping("/loginn")
+	public String loginPage() {
+		return "login";
+	}
 }
