@@ -18,6 +18,7 @@
 	<div class="container">
 		
 		<form id="formDelivery">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 			<div>
 				<label for="date" th:required="required">Date</label>
 				<input type="date"  th:field="${delivery.date}" th:required="required" />

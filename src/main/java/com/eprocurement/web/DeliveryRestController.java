@@ -1,5 +1,11 @@
 package com.eprocurement.web;
 
+import java.sql.Date;
+
+import com.eprocurement.domain.Delivery;
+import com.eprocurement.domain.DeliveryRepository;
+import com.eprocurement.domain.PurchaseOrder;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -8,12 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.sql.Date;
-
-import com.eprocurement.domain.Delivery;
-import com.eprocurement.domain.DeliveryRepository;
-import com.eprocurement.domain.PurchaseOrder;
 
 @RestController
 public class DeliveryRestController {

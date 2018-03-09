@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded",function(){
 
 	const formDelivery = document.getElementById("formDelivery");
 	formDelivery.addEventListener("submit",function(e){
-		sendFormData(this,`/api/delivery/{delivery}`,function(){
+		sendFormData(this,`/api/delivery/${deliveryid}`,function(){
 			window.location.reload(true);
 		});
 		e.preventDefault();
