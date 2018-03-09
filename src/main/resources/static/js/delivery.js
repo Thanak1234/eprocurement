@@ -109,5 +109,13 @@ document.addEventListener("DOMContentLoaded",function(){
 		});
 		e.preventDefault();
 	});
+
+	const formDelivery = document.getElementById("formDelivery");
+	formDelivery.addEventListener("submit",function(e){
+		sendFormData(this,`/api/delivery/{delivery}`,function(){
+			window.location.reload(true);
+		});
+		e.preventDefault();
+	});
 	
 })

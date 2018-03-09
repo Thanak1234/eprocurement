@@ -1,25 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}" />
 </head>
+
 <body>
-    <form th:action="@{/login}" method="post">
-        <div>
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" />
-        </div>
-        <div>
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" />
-        </div>
-        <div>
+    <div class="container-fluid">
+        <form th:action="@{/login}" method="post">
             <div>
-                <button type="submit">Submit</button>
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" />
             </div>
-        </div>
-    </form>
-<script type="text/javascript" th:src="@{/jquery-3.2.1.min.js}"></script>
-<script type="text/javascript" th:src="@{/bootstrap/js/boostrap.min.jss}"></script>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" />
+            </div>
+            <div>
+                <div>
+                    <button type="submit">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Bootstrap -->
+    <script type="text/javascript" th:src="@{/jquery-3.2.1.min.js}"></script>
+    <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
 </body>
+
 </html>

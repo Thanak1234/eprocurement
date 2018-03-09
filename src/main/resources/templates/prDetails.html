@@ -27,12 +27,12 @@
 		</div>
 		<div >
 			<label for="prDate">Date</label>
-			<input type="date"  th:field="${pr.prDate}"  />
+			<input type="date"  th:field="${pr.prDate}" th:required="required" />
 		</div>
 		<div >
 			<label for="modeOfProcurement">Mode of Procurement</label>
 
-			<select th:field="${pr.modeOfProcurement}" >
+			<select th:field="${pr.modeOfProcurement}">
 				<option value="">Select Mode of Procurement</option>
 		 		<option value="Public Bidding">Public Bidding</option>
 		 		<option value="Small Value Procurement">Small Value Procurement</option>

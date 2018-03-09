@@ -21,14 +21,14 @@
 				<label for="name" class="col-sm-2 control-label">Name</label>
 				<div class="col-sm-8">
 					<input type="text" class="form-control" th:field="*{name}"
-						placeholder="Item Name" />
+						placeholder="Item Name"  th:required="required" />
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="desc" class="col-sm-2 control-label">Description</label>
 				<div class="col-sm-8">
 					<textarea class="form-control" rows="5" th:field="*{description}"
-						placeholder="Item Description"></textarea>
+						placeholder="Item Description" th:required="required" ></textarea>
 				</div>
 			</div>
 			<div class="form-group">

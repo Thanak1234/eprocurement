@@ -17,6 +17,12 @@
 
 	<div class="container">
 		
+		<form id="formDelivery">
+			<div>
+				<label for="date" th:required="required">Date</label>
+				<input type="date"  th:field="${delivery.date}" th:required="required" />
+			</div>
+		</form>
 
 		<button data-toggle="modal" data-target="#modalPoItems">Select
 			Items</button>
@@ -50,6 +56,7 @@
 		<!-- pagination -->
 		<ul class="pager" id="paginationDeliveryItems"></ul>
 		<button form="formDeliveryItem" type="submit" class="btn btn-default">Save Items</button>
+		<button type="submit" form="formDelivery" class="btn btn-primary">Save Delivery</button>
 	</div>
 
 	<div class="modal" id="modalPoItems">
