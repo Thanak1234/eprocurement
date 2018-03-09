@@ -18,14 +18,14 @@
 			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 			<div> 
 				<label for="supplier">Supplier</label>
-				<select th:field="${quotation.supplier.id}">
+				<select th:field="${quotation.supplier.id}" th:required="required" >
 					<option value="">Select Supplier</option>
 					<option th:each="supplier: ${suppliers}" th:value="${supplier.id}" th:text="${supplier.supplierName}"></option>
 				</select>
 			</div>
 			<div>
 				<label for="quotationDate">Date</label>
-				<input type="date" th:field="${quotation.quotationDate}" />
+				<input type="date" th:field="${quotation.quotationDate}" th:required="required" />
 			</div>
 		</form>
 	

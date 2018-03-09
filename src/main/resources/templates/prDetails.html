@@ -20,7 +20,7 @@
 		<input type="hidden" name="department.id" th:value="${#authentication.getPrincipal().department.id}" sec:authorize="hasRole('ROLE_USER')"/>
 		<div sec:authorize="hasRole('ROLE_ADMIN')">
 			<label for="department">Department</label>
-			<select  id="department" th:field="${pr.department.id}" >
+			<select  id="department" th:field="${pr.department.id}" th:required="required" >
 				<option value="">Select Department</option>
 				<option th:each="department : ${departments}" th:value="${department.id}" th:text="${department.departmentName}"></option>
 			</select>
@@ -32,7 +32,7 @@
 		<div >
 			<label for="modeOfProcurement">Mode of Procurement</label>
 
-			<select th:field="${pr.modeOfProcurement}">
+			<select th:field="${pr.modeOfProcurement}" th:required="required" >
 				<option value="">Select Mode of Procurement</option>
 		 		<option value="Public Bidding">Public Bidding</option>
 		 		<option value="Small Value Procurement">Small Value Procurement</option>

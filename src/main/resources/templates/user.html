@@ -29,7 +29,7 @@
 				</div>
 				<div>
 					<label for="department">Department</label> <select
-						th:field="*{department}">
+						th:field="*{department}" th:required="required">
 						<option value="">Select Department</option>
 						<option th:each="department : ${departments}"
 							th:value="${department.id}"
