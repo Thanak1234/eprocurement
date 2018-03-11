@@ -8,7 +8,7 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String getIndexPage() {
-		return "index";
+		return "redirect:/pr/all";
 	}
 
 	@GetMapping("/403")
