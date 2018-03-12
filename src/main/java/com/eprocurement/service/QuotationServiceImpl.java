@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 import com.eprocurement.domain.PurchaseRequest;
 import com.eprocurement.domain.PurchaseRequestItem;
 import com.eprocurement.domain.Quotation;
@@ -16,6 +16,7 @@ import com.eprocurement.domain.QuotationRepository;
 import com.eprocurement.domain.Supplier;
 
 @Service
+@Transactional
 public class QuotationServiceImpl implements QuotationService {
 
 	@Autowired

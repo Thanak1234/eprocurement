@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 import com.eprocurement.domain.Department;
 import com.eprocurement.domain.Item;
 import com.eprocurement.domain.PurchaseRequest;
@@ -14,6 +14,7 @@ import com.eprocurement.domain.PurchaseRequestItem;
 import com.eprocurement.domain.PurchaseRequestItemsRepository;
 import com.eprocurement.domain.PurchaseRequestRepository;
 
+@Transactional
 @Service
 public class PurchaseRequestServiceImpl implements PurchaseRequestService {
 

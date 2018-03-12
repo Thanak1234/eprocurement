@@ -8,9 +8,6 @@ import com.eprocurement.domain.Item;
 import com.eprocurement.domain.PurchaseRequest;
 import com.eprocurement.domain.PurchaseRequestItem;
 
-import org.springframework.transaction.annotation.Transactional;
-
-@Transactional
 public interface PurchaseRequestService {
 
 	public void createNewPurchaseRequest(PurchaseRequest purchaseRequest);
