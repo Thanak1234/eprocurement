@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -22,6 +23,7 @@ public class User implements UserDetails{
 	@GeneratedValue
 	private Long id;
 
+	@Column(unique=true)
 	private String username;
 	
 	private String password;
