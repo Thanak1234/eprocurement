@@ -16,7 +16,7 @@ import com.eprocurement.domain.DepartmentRepository;
 import com.eprocurement.domain.PurchaseRequest;
 import com.eprocurement.domain.User;
 import com.eprocurement.domain.UserRepository;
-import com.eprocurement.service.PurchaseRequestServiceImpl;
+import com.eprocurement.service.PurchaseRequestService;
 
 @Controller
 @RequestMapping("/pr")
@@ -26,7 +26,7 @@ public class PurchaseRequestController {
 	private DepartmentRepository departmentRepository;
 	
 	@Autowired
-	private PurchaseRequestServiceImpl purchaseRequestService;
+	private PurchaseRequestService purchaseRequestService;
 	
 	@Autowired
 	private UserRepository userRepository;

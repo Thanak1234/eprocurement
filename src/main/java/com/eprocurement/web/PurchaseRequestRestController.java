@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.eprocurement.domain.Department;
 import com.eprocurement.domain.PurchaseRequest;
 import com.eprocurement.domain.PurchaseRequestRepository;
-import com.eprocurement.service.PurchaseRequestServiceImpl;
+import com.eprocurement.service.PurchaseRequestService;
 
 @RestController
 public class PurchaseRequestRestController {
@@ -23,7 +23,7 @@ public class PurchaseRequestRestController {
 	private PurchaseRequestRepository purchaseRequestRepository;
 	
 	@Autowired
-	private PurchaseRequestServiceImpl purchaseRequestService;
+	private PurchaseRequestService purchaseRequestService;
 	
 	@GetMapping("/api/pr")
 	public Page<PurchaseRequest> getAllPurchaseRequests(Pageable pageable,

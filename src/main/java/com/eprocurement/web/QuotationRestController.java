@@ -15,7 +15,7 @@ import com.eprocurement.domain.PurchaseRequest;
 import com.eprocurement.domain.Quotation;
 import com.eprocurement.domain.QuotationRepository;
 import com.eprocurement.domain.Supplier;
-import com.eprocurement.service.QuotationServiceImpl;
+import com.eprocurement.service.QuotationService;
 
 @RestController
 public class QuotationRestController {
@@ -24,7 +24,7 @@ public class QuotationRestController {
 	private QuotationRepository quotationRepository;
 	
 	@Autowired
-	private QuotationServiceImpl quotationService;
+	private QuotationService quotationService;
 	
 	@GetMapping("/api/pr/{pr}/quotation")
 	public Page<Quotation> getQuotations(@PathVariable PurchaseRequest pr, Pageable pageable){

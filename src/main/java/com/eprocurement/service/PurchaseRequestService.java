@@ -8,13 +8,18 @@ import com.eprocurement.domain.Item;
 import com.eprocurement.domain.PurchaseRequest;
 import com.eprocurement.domain.PurchaseRequestItem;
 
-import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-
+@Transactional
 public interface PurchaseRequestService {
 
 	public void createNewPurchaseRequest(PurchaseRequest purchaseRequest);
-	public void updatePurchaseRequest(PurchaseRequest purchaseRequest, Department department, Date date, String modeOfProcurement, String purpose);
+
+	public void updatePurchaseRequest(PurchaseRequest purchaseRequest, Department department, Date date,
+			String modeOfProcurement, String purpose);
+
 	public void addItems(PurchaseRequest purchaseRequest, List<Item> items);
-	public void updateItems(PurchaseRequestItem purchaseRequestItem, int quantity, String unit);
+
+	public void updateItems(List <PurchaseRequestItem> purchaseRequestItem,List <Integer> quantity,List <String> unit);
+
 }

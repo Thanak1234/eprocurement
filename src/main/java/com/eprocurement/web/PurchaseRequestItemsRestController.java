@@ -20,7 +20,7 @@ import com.eprocurement.domain.PurchaseRequestItem;
 import com.eprocurement.domain.PurchaseRequestItemsRepository;
 import com.eprocurement.domain.User;
 import com.eprocurement.domain.UserRepository;
-import com.eprocurement.service.PurchaseRequestServiceImpl;
+import com.eprocurement.service.PurchaseRequestService;
 
 @RestController
 @RequestMapping("/api/pritems")
@@ -30,7 +30,7 @@ public class PurchaseRequestItemsRestController {
 	private PurchaseRequestItemsRepository purchaseRequestItemRepository;
 	
 	@Autowired
-	private PurchaseRequestServiceImpl purchaseRequestService;
+	private PurchaseRequestService purchaseRequestService;
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -57,9 +57,8 @@ public class PurchaseRequestItemsRestController {
 	public void savePrItems(@RequestParam List<PurchaseRequestItem> item, 
 			@RequestParam List<Integer> quantity, 
 			@RequestParam List<String> unit ) {
-		for(int i=0;i < item.size();i++) {
-			purchaseRequestService.updateItems(item.get(i), quantity.get(i), unit.get(i));
-		}
+		purchaseRequestService.updateItems(item, quantity, unit);
+		
 	}
 	
 	@PostMapping("/add")

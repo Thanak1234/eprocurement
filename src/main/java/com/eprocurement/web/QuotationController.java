@@ -12,7 +12,7 @@ import com.eprocurement.domain.PurchaseRequest;
 import com.eprocurement.domain.Quotation;
 import com.eprocurement.domain.Supplier;
 import com.eprocurement.domain.SupplierRepository;
-import com.eprocurement.service.QuotationServiceImpl;
+import com.eprocurement.service.QuotationService;
 
 @Controller
 public class QuotationController {
@@ -22,7 +22,7 @@ public class QuotationController {
 	private SupplierRepository supplierRepository;
 	
 	@Autowired
-	private QuotationServiceImpl quotationService;
+	private QuotationService quotationService;
 	
 	@PostMapping("/pr/{pr}/quotation/new")
 	public String saveNewQuotation(@PathVariable PurchaseRequest pr, @RequestParam Supplier quotationSupplier) {

@@ -16,7 +16,7 @@ import com.eprocurement.domain.PurchaseRequestItem;
 import com.eprocurement.domain.Quotation;
 import com.eprocurement.domain.QuotationItem;
 import com.eprocurement.domain.QuotationItemsRepository;
-import com.eprocurement.service.QuotationServiceImpl;
+import com.eprocurement.service.QuotationService;
 
 @RestController
 @RequestMapping("/api/quotationitems")
@@ -26,7 +26,7 @@ public class QuotationItemRestController {
 	private QuotationItemsRepository quotationItemsRepository;
 	
 	@Autowired
-	private QuotationServiceImpl quotationService;
+	private QuotationService quotationService;
 	
 	//add items to quotation
 	@PostMapping("/add")
