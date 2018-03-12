@@ -1,12 +1,16 @@
 package com.eprocurement;
+import static org.hamcrest.Matchers.equalTo;
+import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-import static org.hamcrest.Matchers.*;
-import static org.mockito.BDDMockito.given;
+
+import com.eprocurement.item.Item;
+import com.eprocurement.item.ItemRepository;
+import com.eprocurement.item.ItemRestController;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,13 +23,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 
-import com.eprocurement.domain.Item;
-import com.eprocurement.domain.ItemRepository;
-import com.eprocurement.web.ItemController;
-
-
 @RunWith(SpringRunner.class)
-@WebMvcTest(ItemController.class)
+@WebMvcTest(ItemRestController.class)
 public class ItemMvcTest {
 
 	

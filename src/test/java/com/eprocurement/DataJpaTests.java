@@ -1,6 +1,13 @@
 package com.eprocurement;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.eprocurement.department.Department;
+import com.eprocurement.department.DepartmentRepository;
+import com.eprocurement.item.Item;
+import com.eprocurement.item.ItemRepository;
+import com.eprocurement.supplier.Supplier;
+import com.eprocurement.supplier.SupplierRepository;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +16,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import com.eprocurement.domain.Department;
-import com.eprocurement.domain.DepartmentRepository;
-import com.eprocurement.domain.Item;
-import com.eprocurement.domain.ItemRepository;
-import com.eprocurement.domain.Supplier;
-import com.eprocurement.domain.SupplierRepository;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest

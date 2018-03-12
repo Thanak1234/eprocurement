@@ -1,13 +1,17 @@
 package com.eprocurement;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.mockito.BDDMockito.given;
+
+import com.eprocurement.department.Department;
+import com.eprocurement.department.DepartmentController;
+import com.eprocurement.department.DepartmentRepository;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,10 +22,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-
-import com.eprocurement.domain.Department;
-import com.eprocurement.domain.DepartmentRepository;
-import com.eprocurement.web.DepartmentController;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(DepartmentController.class)
