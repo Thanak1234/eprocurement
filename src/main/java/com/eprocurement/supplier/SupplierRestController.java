@@ -14,7 +14,6 @@ public class SupplierRestController {
 	@Autowired
 	private SupplierRepository supplierRepository;
 	
-	//TODO move this to service layer
 	@GetMapping("/api/suppliers")
 	public @ResponseBody Page<Supplier> getAllSuppliers(Pageable pageable,
 			@RequestParam(defaultValue="") String searchBy, @RequestParam(defaultValue="") String searchValue) {
