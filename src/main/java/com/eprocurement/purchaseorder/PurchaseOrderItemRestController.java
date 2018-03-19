@@ -20,7 +20,7 @@ public class PurchaseOrderItemRestController {
 	private PurchaseOrderItemRepository purchaseOrderItemRepository;
 
 	@Autowired
-	private PurchaseOrderServiceImpl purchaseOrderService;
+	private PurchaseOrderService purchaseOrderService;
 	
 	@GetMapping("/api/poitems/{po}")
 	public Page<PurchaseOrderItem> getPoItems(Pageable pageable, @PathVariable PurchaseOrder po){

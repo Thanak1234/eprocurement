@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import com.eprocurement.quotation.Quotation;
 import com.eprocurement.quotation.QuotationItem;
 
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 public class PurchaseOrderServiceImpl implements PurchaseOrderService {
 
 	@Autowired

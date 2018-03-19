@@ -17,7 +17,6 @@ public class PurchaseOrderRestController {
 	@Autowired
 	private PurchaseOrderRepository purchaseOrderRepository;
 	
-	//TODO move this to service layer
 	@GetMapping("/api/po/all")
 	public Page<PurchaseOrder> getAllPurchaseOrders(Pageable pageable,
 			@RequestParam(defaultValue="") String searchBy,

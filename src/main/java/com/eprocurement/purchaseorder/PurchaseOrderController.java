@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class PurchaseOrderController {
 
 	@Autowired
-	private PurchaseOrderServiceImpl purchaseOrderService;
+	private PurchaseOrderService purchaseOrderService;
 
 	@GetMapping("/po")
 	public String getDefaultManagePurchaseOrder() {
