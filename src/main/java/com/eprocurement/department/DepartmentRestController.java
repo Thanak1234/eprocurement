@@ -13,7 +13,6 @@ public class DepartmentRestController {
 	@Autowired
 	private DepartmentRepository departmentRepository;
 	
-	//TODO move this to service layer
 	@GetMapping("/api/departments")
 	public Page<Department> getAllDepartments(Pageable pageable,
 			@RequestParam(defaultValue="") String searchBy, @RequestParam(defaultValue="") String searchValue){
