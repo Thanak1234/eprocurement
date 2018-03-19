@@ -1,27 +1,36 @@
 package com.eprocurement.user;
 
 import com.eprocurement.department.Department;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-//TODO add auditing
+
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class User implements UserDetails{
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(unique=true)
@@ -36,9 +45,42 @@ public class User implements UserDetails{
 	private String role;
 	
 	private boolean enabled;
+
+	@LastModifiedBy
+	@JsonIgnore
+	private String LastModifiedBy;
+
+	@LastModifiedDate
+	@JsonIgnore
+	private Date LastModifiedDate;
 	
 	@OneToOne
 	private Department department;
+
+	/**
+	 * @return the lastModifiedBy
+	 */
+	public String getLastModifiedBy() {
+		return LastModifiedBy;
+	}
+	/**
+	 * @param lastModifiedBy the lastModifiedBy to set
+	 */
+	public void setLastModifiedBy(String lastModifiedBy) {
+		this.LastModifiedBy = lastModifiedBy;
+	}
+	/**
+	 * @return the lastModifiedDate
+	 */
+	public Date getLastModifiedDate() {
+		return LastModifiedDate;
+	}
+	/**
+	 * @param lastModifiedDate the lastModifiedDate to set
+	 */
+	public void setLastModifiedDate(Date lastModifiedDate) {
+		this.LastModifiedDate = lastModifiedDate;
+	}
 
 	public Long getId() {
 		return id;
