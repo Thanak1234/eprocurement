@@ -2,20 +2,28 @@ package com.eprocurement.quotation;
 
 import com.eprocurement.purchaserequest.PurchaseRequest;
 import com.eprocurement.supplier.Supplier;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import java.sql.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-//TODO add auditing
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Quotation {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 		
 	private Date quotationDate;
@@ -26,6 +34,41 @@ public class Quotation {
 	@ManyToOne
 	private PurchaseRequest purchaseRequest;
 	
+	@LastModifiedBy
+	@JsonIgnore
+	private String lastModifiedBy;
+
+	@LastModifiedDate
+	@JsonIgnore
+	private java.util.Date lastModifiedDate;
+
+	/**
+	 * @return the lastModifiedBy
+	 */
+	public String getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+
+	/**
+	 * @param lastModifiedBy the lastModifiedBy to set
+	 */
+	public void setLastModifiedBy(String lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
+
+	/**
+	 * @return the lastModifiedDate
+	 */
+	public java.util.Date getLastModifiedDate() {
+		return lastModifiedDate;
+	}
+
+	/**
+	 * @param lastModifiedDate the lastModifiedDate to set
+	 */
+	public void setLastModifiedDate(java.util.Date lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
+	}
 
 	public Long getId() {
 		return id;

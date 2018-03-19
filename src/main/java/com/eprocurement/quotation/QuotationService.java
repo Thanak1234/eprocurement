@@ -12,4 +12,5 @@ public interface QuotationService {
 	public Quotation createNewQuotation(PurchaseRequest purchaseRequest, Supplier supplier);
 	public void updateQuotation(Quotation quotation, Supplier supplier, Date date);
 	public void addQuotationItems(Quotation quotation, List<PurchaseRequestItem> items);
+	public void saveQuotationItems(List<QuotationItem> items, List<Double> price);
 }

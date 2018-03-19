@@ -53,7 +53,7 @@ public class PurchaseRequestController {
 	public String showDefaultPurchaseRequestManagementPage() {
 		return "redirect:/pr/all";
 	}
-	//TODO move this to service layer
+	
 	@GetMapping("/{pr}/details")
 	public String selectPRItems(@PathVariable PurchaseRequest pr, Model model, Authentication authentication) {
 		

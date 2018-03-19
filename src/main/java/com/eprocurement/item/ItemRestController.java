@@ -13,7 +13,6 @@ public class ItemRestController {
 	@Autowired 
 	ItemRepository itemRepository;
 	
-	//TODO move this to service layer
 	@GetMapping("/api/items")
 	public Page<Item> getPagedItems(Pageable pageable, @RequestParam(defaultValue="") String searchBy, 
 			@RequestParam(defaultValue="") String searchValue) {

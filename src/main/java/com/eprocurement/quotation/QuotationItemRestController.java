@@ -40,12 +40,8 @@ public class QuotationItemRestController {
 		quotationItemsRepository.delete(quotationItem);	
 	}
 	
-	//TODO move this to service layer
 	@PostMapping("/save")
 	public void saveQuotationItems(@RequestParam List<QuotationItem> item ,@RequestParam List<Double> price) {
-		for(int i=0;i < item.size();i++) {
-			item.get(i).setPrice(price.get(i));
-		}
-		quotationItemsRepository.saveAll(item);
+		saveQuotationItems(item, price);
 	}
 }
