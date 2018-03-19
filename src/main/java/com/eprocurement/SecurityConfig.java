@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/js/**", "/bootstrap/**", "/css/**", "/jquery-3.2.1.min.js").permitAll()
 				.antMatchers("/", "/#", "/item/new", "/item/all", "/api/items", "/item/save", "/pr/new",
 						"/pr/{pr}/details", "/pr/save", "/pr/all", "/api/pr/{department}/all", "/api/pritems/**",
-						"/api/pr/{pr}")
+						"/api/pr/{pr}","/login")
 				.hasAnyRole("ADMIN", "USER").anyRequest().hasRole("ADMIN").and().exceptionHandling()
 				.accessDeniedPage("/403");
 	}

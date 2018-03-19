@@ -42,6 +42,6 @@ public class QuotationItemRestController {
 	
 	@PostMapping("/save")
 	public void saveQuotationItems(@RequestParam List<QuotationItem> item ,@RequestParam List<Double> price) {
-		saveQuotationItems(item, price);
+		quotationService.saveQuotationItems(item, price);
 	}
 }

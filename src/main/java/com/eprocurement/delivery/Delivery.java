@@ -4,6 +4,7 @@ import com.eprocurement.purchaseorder.PurchaseOrder;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.sql.Date;
@@ -32,7 +33,7 @@ public class Delivery {
 	@JsonIgnore
 	private String LastModifiedBy;
 
-	@LastModifiedBy
+	@LastModifiedDate
 	@JsonIgnore
 	private java.util.Date lastModifiedDate;
 

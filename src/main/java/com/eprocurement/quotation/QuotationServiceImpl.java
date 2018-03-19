@@ -56,8 +56,8 @@ public class QuotationServiceImpl implements QuotationService {
 	public void saveQuotationItems(List<QuotationItem> items, List<Double> price) {
 		for (int i = 0; i < items.size(); i++) {
 			items.get(i).setPrice(price.get(i));
+		quotationItemRepository.save(items.get(i));
 		}
-		quotationItemRepository.saveAll(items);
 	}
 
 	
