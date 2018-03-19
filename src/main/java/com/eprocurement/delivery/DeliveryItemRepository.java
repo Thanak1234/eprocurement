@@ -4,9 +4,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-public interface DeliveryItemRepository extends PagingAndSortingRepository<DeliveryItem, Long>{
+public interface DeliveryItemRepository extends PagingAndSortingRepository<DeliveryItem, Long> {
 
-		Page<DeliveryItem> findByDelivery(Delivery delivery, Pageable pageable);
-		
-		
+	Page<DeliveryItem> findByDelivery(Delivery delivery, Pageable pageable);
+
 }

@@ -82,7 +82,7 @@ public class SupplierMvcTest {
 	@Test
 	@WithMockUser("admin")
 	public void testGetSupplierUpdateForm()throws Exception{
-		given(supplierRepository.findOne((long) 1)).willReturn(supplier);
+		given(supplierRepository.findById((long) 1).get()).willReturn(supplier);
 		mvc.perform(get("/supplier/update/1"))
 		.andExpect(status().isOk())
 		.andExpect(view().name("supplier"))

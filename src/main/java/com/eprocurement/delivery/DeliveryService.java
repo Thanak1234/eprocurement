@@ -1,5 +1,6 @@
 package com.eprocurement.delivery;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.eprocurement.purchaseorder.PurchaseOrder;
@@ -9,6 +10,6 @@ public interface DeliveryService {
 
 	public Delivery createNewDelivery(PurchaseOrder purchaseOrder);
 	public void addDeliveryItems(Delivery delivery, List<PurchaseOrderItem> items);
-	
-	
+	public void saveItems(List<DeliveryItem> items,List<Integer>quantity);
+	public void updateDelivery(Delivery delivery, Date date);
 }

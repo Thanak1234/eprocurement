@@ -23,7 +23,7 @@ public class DeliveryItemRestController {
 	
 
 	@Autowired
-	private DeliveryServiceImpl deliveryService;
+	private DeliveryService deliveryService;
 	
 	@GetMapping("/{delivery}")
 	public Page<DeliveryItem> getDeliveryItems(@PathVariable Delivery delivery, Pageable pageable){
@@ -35,13 +35,9 @@ public class DeliveryItemRestController {
 		deliveryService.addDeliveryItems(delivery, item);
 	}
 	
-	//TODO move this to service layer
 	@PostMapping("/save")
 	public void saveItem(@RequestParam List<DeliveryItem> item, @RequestParam List<Integer> quantity) {
-		for(int i=0;i < item.size();i++) {
-			item.get(i).setQuantity(quantity.get(i));
-			deliveryItemRepository.save(item.get(i));
-		}
+		deliveryService.saveItems(item, quantity);
 	}
 	
 	@PostMapping("/delete")

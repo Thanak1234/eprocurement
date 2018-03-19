@@ -80,7 +80,7 @@ public class ItemMvcTest {
 	@Test
 	@WithMockUser("admin")
 	public void testGetItemUpdateForm()throws Exception{
-		given(itemRepository.findOne((long) 1)).willReturn(item);	
+		given(itemRepository.findById((long) 1).get()).willReturn(item);	
 		mvc.perform(get("/item/update/1"))
 		.andExpect(status().isOk())
 		.andExpect(view().name("item"))

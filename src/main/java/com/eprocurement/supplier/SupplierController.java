@@ -44,7 +44,7 @@ public class SupplierController {
 	//get supplier form for update
 	@GetMapping("/{id}")
 	public String getSupplierUpdateForm(@PathVariable Long id, Model model) {
-		model.addAttribute("supplier",supplierRepository.findOne(id));
+		model.addAttribute("supplier",supplierRepository.findById(id).get());
 		return "supplier";
 	}
 	

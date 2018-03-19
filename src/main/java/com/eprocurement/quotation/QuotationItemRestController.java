@@ -45,7 +45,7 @@ public class QuotationItemRestController {
 	public void saveQuotationItems(@RequestParam List<QuotationItem> item ,@RequestParam List<Double> price) {
 		for(int i=0;i < item.size();i++) {
 			item.get(i).setPrice(price.get(i));
-			quotationItemsRepository.save(item);
 		}
+		quotationItemsRepository.saveAll(item);
 	}
 }

@@ -44,7 +44,7 @@ public class DataJpaTests {
     	testItem.setDescription("black");
     	this.entityManager.persist(testItem);//save item 	
     	//check if item exist
-    	Item item = this.itemRepository.findOne( (long) 1);
+    	Item item = this.itemRepository.findById( (long) 1).get();
     	assertThat(item.getDescription()).isEqualTo("black");
     }
     
@@ -59,7 +59,7 @@ public class DataJpaTests {
     	this.entityManager.persist(testSupplier);//save supplier
 	
     	//check if supplier exists
-    	Supplier supplier = this.supplierRepository.findOne((long) 1);
+    	Supplier supplier = this.supplierRepository.findById((long) 1).get();
     	assertThat(supplier.getSupplierName()).isEqualTo("ABC Company");
     }
     
@@ -70,8 +70,9 @@ public class DataJpaTests {
     	testDepartment.setDepartmentName("Treasury");
     	testDepartment.setDepartmentHead("Charmia Dacanay");
     	this.entityManager.persist(testDepartment);	
-    	//check if department exist
-    	Department department = this.departmentRepository.findOne((long) 1);
+		//check if department exist
+		
+    	Department department = this.departmentRepository.findById((long) 1).get();
     	assertThat(department.getDepartmentName()).isEqualTo("Treasury");
     	assertThat(department.getDepartmentHead()).isEqualTo("Charmia Dacanay");
     	

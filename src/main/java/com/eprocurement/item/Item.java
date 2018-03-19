@@ -1,9 +1,11 @@
 package com.eprocurement.item;
 
 import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -17,7 +19,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 public class Item {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
 
 	private String name;
@@ -27,24 +29,24 @@ public class Item {
 	//Auditing
 	@LastModifiedBy
 	@JsonIgnore
-	private String user;
+	private String lastModifiedBy;
 
 	@LastModifiedDate
 	@JsonIgnore
 	private Date lastModifiedDate;
 
 	/**
-	 * @return the user
+	 * @return the lastModifiedBy
 	 */
-	public String getUser() {
-		return user;
+	public String getLastModifiedBy() {
+		return lastModifiedBy;
 	}
 
 	/**
-	 * @param user the user to set
+	 * @param lastModifiedBy the lastModifiedBy to set
 	 */
-	public void setUser(String user) {
-		this.user = user;
+	public void setLastModifiedBy(String lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
 	}
 
 	/**

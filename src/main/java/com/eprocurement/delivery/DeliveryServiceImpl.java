@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import com.eprocurement.purchaseorder.PurchaseOrder;
 import com.eprocurement.purchaseorder.PurchaseOrderItem;
 
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 public class DeliveryServiceImpl implements DeliveryService {
 
 	@Autowired
@@ -39,6 +42,20 @@ public class DeliveryServiceImpl implements DeliveryService {
 			deliveryItemRepository.save(deliveryItem);
 		}
 
+	}
+
+	@Override
+	public void saveItems(List<DeliveryItem> items, List<Integer> quantity) {
+		for (int i = 0; i < items.size(); i++) {
+			items.get(i).setQuantity(quantity.get(i));
+			deliveryItemRepository.save(items.get(i));
+		}
+	}
+
+	@Override
+	public void updateDelivery(Delivery delivery, Date date) {
+		delivery.setDate(date);
+		deliveryRepository.save(delivery);
 	}
 
 }

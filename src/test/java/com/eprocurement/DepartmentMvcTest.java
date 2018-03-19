@@ -80,7 +80,7 @@ public class DepartmentMvcTest {
 	@Test
 	@WithMockUser("admin")
 	public void testGetUpdateForm()throws Exception{
-		given(departmentRepository.findOne((long) 1)).willReturn(department);
+		given(departmentRepository.findById((long) 1).get()).willReturn(department);
 		mvc.perform(get("/department/update/1"))
 			.andExpect(status().isOk())
 			.andExpect(view().name("department"))

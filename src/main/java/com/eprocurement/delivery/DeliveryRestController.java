@@ -18,17 +18,18 @@ public class DeliveryRestController {
 	
 	@Autowired
 	private DeliveryRepository deliveryRepository;
+
+	@Autowired
+	private DeliveryService deliveryService;
 	
 	@GetMapping("/api/po/{po}/delivery")
 	public Page<Delivery> getDeliveries(@PathVariable PurchaseOrder po, Pageable pageable){
 		return deliveryRepository.findByPurchaseOrder(po, pageable);
 	}
 
-	//TODO move this to service layer
 	@PostMapping("/api/delivery/{delivery}")
 	public void updateDelivery(@PathVariable Delivery delivery, @RequestParam Date date){
-		delivery.setDate(date);
-		deliveryRepository.save(delivery);
+		deliveryService.updateDelivery(delivery, date);
 	}
 
 }

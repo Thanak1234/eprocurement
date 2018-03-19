@@ -1,13 +1,23 @@
 package com.eprocurement.delivery;
 
 import com.eprocurement.purchaseorder.PurchaseOrderItem;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.util.Date;
+
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-//TODO add auditing
+
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class DeliveryItem {
 
 	@Id
@@ -21,6 +31,14 @@ public class DeliveryItem {
 	private PurchaseOrderItem purchaseOrderItem;
 	
 	private int quantity;
+
+	@LastModifiedBy
+	@JsonIgnore
+	private String lastModifiedBy;
+
+	@LastModifiedDate
+	@JsonIgnore
+	private Date lastModifieDate;
 
 	public Long getId() {
 		return id;

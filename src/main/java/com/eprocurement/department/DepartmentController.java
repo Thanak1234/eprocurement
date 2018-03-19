@@ -49,7 +49,7 @@ public class DepartmentController {
 	//get update form
 	@GetMapping("/{id}")
 	public String getUpdateDepartmentForm(@PathVariable Long id, Model model) {
-		model.addAttribute("department",departmentRepository.findOne(id));
+		model.addAttribute("department",departmentRepository.findById(id).get());
 		return "department";
 	}
 	

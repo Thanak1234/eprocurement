@@ -37,7 +37,7 @@ public class UserController {
 	
 	@GetMapping("/user/{user}")
 	public String getUpdateUserForm(@PathVariable User user, Model model) {
-		model.addAttribute("user",userRepository.findOne(user.getId()));
+		model.addAttribute("user",userRepository.findById(user.getId()).get());
 		model.addAttribute("departments", departmentRepository.findAll());
 		return "user";
 	}
