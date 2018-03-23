@@ -119,5 +119,4 @@ document.addEventListener("DOMContentLoaded",function(){
 		sendFormData(this,"/api/pr/"+prNo,function(){});
 		e.preventDefault();
 	})
-	
 });

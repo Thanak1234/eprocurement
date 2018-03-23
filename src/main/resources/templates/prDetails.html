@@ -15,6 +15,9 @@
 	</div>
 
 	<div class="container">	
+	<a th:href="@{${@jasperserverUrl}+'/rest_v2/reports/'+${@reportUrl}+'/PurchaseRequest.pdf?prno='+${pr.prNo}}">Generate Pdf</a>
+	<span>/</span>
+	<a th:href="@{${@jasperserverUrl}+'/rest_v2/reports/'+${@reportUrl}+'/PurchaseRequest.xls?prno='+${pr.prNo}}">Generate Xls</a>
 	<form id="formPr" >
 		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 		<input type="hidden" name="department.id" th:value="${#authentication.getPrincipal().department.id}" sec:authorize="hasRole('ROLE_USER')"/>

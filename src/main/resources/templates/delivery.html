@@ -16,7 +16,9 @@
 	</div>
 
 	<div class="container">
-		
+		<a th:href="@{${@jasperserverUrl}+'/rest_v2/reports/'+${@reportUrl}+'/Delivery.pdf?delivery='+${delivery.id}}">Generate Pdf</a>
+		<span>/</span>
+		<a th:href="@{${@jasperserverUrl}+'/rest_v2/reports/'+${@reportUrl}+'/Delivery.xls?delivery='+${delivery.id}}">Generate Xls</a>
 		<form id="formDelivery">
 			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 			<div>

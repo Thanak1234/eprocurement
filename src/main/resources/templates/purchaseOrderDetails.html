@@ -14,7 +14,9 @@
 	</div>
 
 	<div class="container">
-	
+	<a th:href="@{${@jasperserverUrl}+'/rest_v2/reports/'+${@reportUrl}+'/PurchaseOrder.pdf?pono='+${po.poNo}}">Generate Pdf</a>
+	<span>/</span>
+	<a th:href="@{${@jasperserverUrl}+'/rest_v2/reports/'+${@reportUrl}+'/PurchaseOrder.xls?pono='+${po.poNo}}">Generate Xls</a>
 	<!-- purchase order form -->
 	<form id="formPo">
 		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
