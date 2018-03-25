@@ -42,7 +42,9 @@ public class ItemController {
 	//get item form for update
 	@GetMapping("/{id}")
 	public String getUpdateForm(@PathVariable Long id, Model model){
-		model.addAttribute("item", itemRepository.findById(id).get());
+		if(itemRepository.findById(id).isPresent()){
+			model.addAttribute("item", itemRepository.findById(id).get());
+		}
 		return "item";
 	}
 
