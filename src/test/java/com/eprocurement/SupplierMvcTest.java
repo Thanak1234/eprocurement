@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 
 import com.eprocurement.supplier.Supplier;
 import com.eprocurement.supplier.SupplierController;
@@ -25,6 +26,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(SupplierController.class)
+@WithMockUser(roles="ADMIN")
 public class SupplierMvcTest {
 
 	@Autowired
@@ -49,58 +51,39 @@ public class SupplierMvcTest {
 	
 	//Test get supplier management
 	@Test
-	@WithMockUser("admin")
 	public void testSupplierManagement()throws Exception{
-		mvc.perform(get("/supplier"))
+		mvc.perform(get("/supplier/all"))
 		.andExpect(status().isOk())
 		.andExpect(view().name("suppliers"));
 	}
 	
 	//MVC test for get supplier form
 	@Test
-	@WithMockUser("admin")
 	public void testGetSupplierForm()throws Exception{
 		mvc.perform(get("/supplier/new"))
 			.andExpect(status().isOk())
 			.andExpect(view().name("supplier"))
-			.andExpect(model().attributeExists("supplier"))
-			.andExpect(model().attributeExists("pageTitle"))
-			.andExpect(model().attribute("pageTitle","New Supplier"));
-		
+			.andExpect(model().attributeExists("supplier"));	
 	}
 	
 	//MVC test for saving new supplier
 	@Test
-	@WithMockUser("admin")
 	public void testSaveNewSupplier()throws Exception{
-		mvc.perform(post("/supplier/new"))
+		mvc.perform(post("/supplier/save").with(csrf()))
 			.andExpect(status().is3xxRedirection())
-			.andExpect(header().string("Location", "/supplier"));	
+			.andExpect(header().string("Location", "/supplier/all"));	
 	}
 	
 	//MCV test for get supplier update form
 	@Test
-	@WithMockUser("admin")
 	public void testGetSupplierUpdateForm()throws Exception{
-		given(supplierRepository.findById((long) 1).get()).willReturn(supplier);
-		mvc.perform(get("/supplier/update/1"))
+		if(this.supplierRepository.findById(1L).isPresent()){
+			given(supplierRepository.findById(1L).get()).willReturn(supplier);
+		}
+		mvc.perform(get("/supplier/1"))
 		.andExpect(status().isOk())
 		.andExpect(view().name("supplier"))
 		.andExpect(model().attributeExists("supplier"))
-		.andExpect(model().attribute("supplier", equalTo(supplier)))
-		.andExpect(model().attributeExists("pageTitle"))
-		.andExpect(model().attribute("pageTitle", "Update supplier 1"));
-									
+		.andExpect(model().attribute("supplier", equalTo(supplier)));							
 	}
-	
-	
-	//MVC test for updating suppler
-	@Test
-	@WithMockUser("admin")
-	public void testUpdateSupplier()throws Exception{
-		mvc.perform(post("/supplier/update/1"))
-			.andExpect(status().is3xxRedirection())
-			.andExpect(header().string("Location", "/supplier"));
-	}
-	
 }

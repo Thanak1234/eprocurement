@@ -43,7 +43,7 @@ public class DepartmentController {
 	@PostMapping("/save")
 	public String saveNewDepartment(@ModelAttribute Department department) {
 		departmentRepository.save(department);
-		return "redirect:/department";
+		return "redirect:/department/all";
 	}
 
 	//get update form

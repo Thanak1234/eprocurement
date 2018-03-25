@@ -75,8 +75,8 @@ public class ItemMvcTest {
 	@Test
 	@WithMockUser(roles = "ADMIN")
 	public void testGetItemUpdateForm() throws Exception {
-		if (itemRepository.findById(1L).isPresent()) {
-			given(itemRepository.findById(1L).get()).willReturn(item);
+		if (this.itemRepository.findById(1L).isPresent()) {
+			given(this.itemRepository.findById(1L).get()).willReturn(item);
 		}
 		mvc.perform(get("/item/1")).andExpect(status().isOk()).andExpect(view().name("item"))
 				.andExpect(model().attributeExists("item")).andExpect(model().attribute("item", equalTo(item)));

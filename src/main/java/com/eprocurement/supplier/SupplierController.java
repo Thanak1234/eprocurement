@@ -38,7 +38,7 @@ public class SupplierController {
 	@PostMapping("/save")
 	public String saveNewSupplier(@ModelAttribute Supplier supplier) {
 		supplierRepository.save(supplier);
-		return "redirect:/supplier";
+		return "redirect:/supplier/all";
 	}
 	
 	//get supplier form for update

@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 
 import com.eprocurement.department.Department;
 import com.eprocurement.department.DepartmentController;
@@ -25,6 +26,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(DepartmentController.class)
+@WithMockUser(roles="ADMIN")
 public class DepartmentMvcTest {
 	
 	@Autowired
@@ -48,54 +50,40 @@ public class DepartmentMvcTest {
 	
 	//test get all department
 	@Test
-	@WithMockUser("admin")
 	public void testGetAllDepartments()throws Exception{
-		mvc.perform(get("/department"))
+		mvc.perform(get("/department/all"))
 			.andExpect(status().isOk())
 			.andExpect(view().name("departments"));
 	}
 	
 	//test get update form
 	@Test
-	@WithMockUser("admin")
 	public void testGetDepartmentForm()throws Exception{
 		mvc.perform(get("/department/new"))
 			.andExpect(status().isOk())
 			.andExpect(view().name("department"))
-			.andExpect(model().attributeExists("department"))
-			.andExpect(model().attributeExists("pageTitle"))
-			.andExpect(model().attribute("pageTitle", "New Department"));
+			.andExpect(model().attributeExists("department"));
 	}
 	
 	//test save department
 	@Test
-	@WithMockUser("admin")
 	public void testSaveNewDepartment()throws Exception{
-		mvc.perform(post("/department/new"))
+		mvc.perform(post("/department/save").with(csrf()))
 			.andExpect(status().is3xxRedirection())
-			.andExpect(header().string("Location","/department"));
+			.andExpect(header().string("Location","/department/all"));
 	}
 	
 	//test get update form
 	@Test
-	@WithMockUser("admin")
 	public void testGetUpdateForm()throws Exception{
-		given(departmentRepository.findById((long) 1).get()).willReturn(department);
-		mvc.perform(get("/department/update/1"))
+		if(this.departmentRepository.findById(1L).isPresent()){
+			given(departmentRepository.findById(1L).get()).willReturn(department);
+		}
+		mvc.perform(get("/department/1"))
 			.andExpect(status().isOk())
 			.andExpect(view().name("department"))
 			.andExpect(model().attributeExists("department"))
-			.andExpect(model().attribute("department", equalTo(department)))
-			.andExpect(model().attributeExists("pageTitle"))
-			.andExpect(model().attribute("pageTitle", "Update Department 1"));
+			.andExpect(model().attribute("department", equalTo(department)));
 	}
 	
-	//test update department
-	@Test
-	@WithMockUser("admin")
-	public void testUpdateDepartment()throws Exception{
-		mvc.perform(post("/department/update/1"))
-			.andExpect(status().is3xxRedirection())
-			.andExpect(header().string("Location", "/department"));
-	}
 }
