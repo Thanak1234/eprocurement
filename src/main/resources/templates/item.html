@@ -15,7 +15,7 @@
 	<section class="container">
 		<!-- Item form  -->
 		<form method="post" th:object="${item}" th:action="@{/item/save}"
-			class="form-horizontal">
+			class="form-horizontal form-confirm">
 			<input type="hidden" th:field="*{id}" />
 			<div class="form-group">
 				<label for="name" class="col-sm-2 control-label">Name</label>
@@ -43,6 +43,8 @@
 	<script type="text/javascript" th:src="@{/jquery-3.2.1.min.js}"></script>
 	<script type="text/javascript"
 		th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+
+		<script th:src="@{/js/formConfirm.js}"></script>
 </body>
 </html>
 

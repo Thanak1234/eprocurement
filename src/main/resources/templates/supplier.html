@@ -12,7 +12,7 @@
 	</div>
 	<div class="container">
 		<!-- Supplier form -->
-		<form method="post" th:object="${supplier}" th:action="@{/supplier/save}" class="form-horizontal">
+		<form method="post" th:object="${supplier}" th:action="@{/supplier/save}" class="form-horizontal form-confirm">
 			<input type="hidden" th:field="*{id}" />
 			<div class="form-group">
 				<label for="supplierName" class="control-label col-sm-2">Supplier Name</label>
@@ -53,5 +53,7 @@
 	<!-- Bootstrap -->
 	<script type="text/javascript" th:src="@{/jquery-3.2.1.min.js}"></script>
 	<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+
+	<script th:src="@{/js/formConfirm.js}"></script>
 </body>
 </html>

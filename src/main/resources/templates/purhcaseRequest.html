@@ -11,7 +11,7 @@
 	</div>
 	<div class="container">
 	<!-- Form -->
-	<form method="post" th:object="${purchaseRequest}" th:action="@{/pr/save}">
+	<form method="post" th:object="${purchaseRequest}" th:action="@{/pr/save}" class="form-confirm">
 		<div class="form-group">
 			<label for="prNo">P.R. Number</label> 
 			<input th:field="*{prNo}" placeholder="P.R. Number" th:required="required" />
@@ -44,6 +44,7 @@
 	
 	<script type="text/javascript" th:src="@{/jquery-3.2.1.min.js}"></script>
 	<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
-	
+
+	<script th:src="@{/js/formConfirm.js}"></script>
 </body>
 </html>
