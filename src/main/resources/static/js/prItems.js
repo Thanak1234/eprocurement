@@ -102,21 +102,26 @@ document.addEventListener("DOMContentLoaded",function(){
 	
 	const formAddItems = document.getElementById("formAddItems");
 	formAddItems.addEventListener("submit",function(e){
-		sendFormData(this,"/api/pritems/add",function(){
-			window.location.reload(true);
-		});
+		if(confirm("Add items?")){
+			sendFormData(this,"/api/pritems/add",function(){
+				window.location.reload(true);
+			});
+		}
 		e.preventDefault();
 	});
 
 	const formPrItems = document.getElementById("formPrItems");
 	formPrItems.addEventListener("submit",function(e){
-		sendFormData(this,"/api/pritems/save",function(){});
+		if(confirm("Save items?")){
+			sendFormData(this,"/api/pritems/save",function(){});
+		}
 		e.preventDefault();
 	});
 	
 	const formPr = document.getElementById("formPr");
 	formPr.addEventListener("submit",function(e){
-		sendFormData(this,"/api/pr/"+prNo,function(){});
+		if(confirm("Save Purchase Request?"))
+			sendFormData(this,"/api/pr/"+prNo,function(){});
 		e.preventDefault();
 	})
 });

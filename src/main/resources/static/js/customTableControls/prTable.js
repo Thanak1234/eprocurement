@@ -67,9 +67,11 @@ function prTableCallback(data){
 			actionCell.appendChild(btnRemove);
 			
 			btnRemove.addEventListener("click",function(){
-				postData("/api/pritems/delete", `id= ${this.value}`,function(){
-					window.location.reload(true);
-				});			
+				if(confirm(`Remove this item?`)){
+					postData("/api/pritems/delete", `id= ${this.value}`,function(){
+						window.location.reload(true);
+					});		
+				}					
 			});
 		}
 	}	

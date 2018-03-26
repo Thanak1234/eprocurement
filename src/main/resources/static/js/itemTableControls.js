@@ -9,6 +9,7 @@ import Sorter from "./tableControls/sorter.js";
 document.addEventListener("DOMContentLoaded",function(){
 	
 	let itemPage = new PageSearch("/api/items");
+	itemPage.sort="id,DESC";
 	
 	createUpdateTable(itemPage.url,itemPage.getPageProps()+`&page=${itemPage.page}`);
 	
