@@ -42,4 +42,10 @@ document.addEventListener("DOMContentLoaded",function(){
 		sorter.sortTable("supplier.supplierName");
 		sorter.setSortedColumn(2);
 	})
+
+	const formQuotation = document.addEventListener("submit",function(e){
+		if(!confirm("Create New Quotation?")){
+			e.preventDefault();
+		}
+	});
 });

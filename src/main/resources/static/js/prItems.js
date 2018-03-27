@@ -124,4 +124,16 @@ document.addEventListener("DOMContentLoaded",function(){
 			sendFormData(this,"/api/pr/"+prNo,function(){});
 		e.preventDefault();
 	})
+
+	const btnSaveAll = document.getElementById("btnSaveAll");
+	btnSaveAll.addEventListener("click",function(e){
+		if(confirm("Save changes?")){
+			sendFormData(formPr,"/api/pr/"+prNo,function(){
+				sendFormData(formPrItems,"/api/pritems/save",function(){
+					window.location.href="/pr/all"
+				});
+			});
+		}
+		e.preventDefault();
+	});
 });

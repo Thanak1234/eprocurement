@@ -51,7 +51,7 @@
 				<form method="post" id="formQuotation" th:action="@{'/pr/'+${pr.prNo}+'/quotation/new'}"> 
 					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 					<label for="quotationSupplier">Supplier</label>
-					<select id="quotationSupplier" name="quotationSupplier">
+					<select id="quotationSupplier" name="quotationSupplier" th:required="required">
 						<option value="">Select Supplier</option>
 						<option th:each="supplier : ${suppliers}" th:text="${supplier.supplierName}" th:value="${supplier.id}"></option>
 					</select>	

@@ -16,7 +16,7 @@
 		<a th:href="@{/pr/new}">New Purchase Request</a><br />
 		<!-- Search -->
 		<span class="form-group" sec:authorize="hasRole('ROLE_ADMIN')">
-			<label for="search">Search Purchase Request</label><input type="search" name="search"
+			<label for="search">Search Purchase Request</label><span> </span><input type="search" name="search"
 				id="inputPrSearch" />
 			<button id="btnSearch" disabled="disabled">Search</button>
 			<br /> <label>Department</label> <select id="selectDepartment">

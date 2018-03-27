@@ -53,9 +53,11 @@ function renderQuotationItemsTable(data){
 		cellAction.appendChild(btnRemove);
 		
 		btnRemove.addEventListener("click",function(){
-			postData("/api/quotationitems/delete",`quotationItem=${this.value}`,function(){
-				window.location.reload(true);
-			});	
+			if(confirm("Remove item?")){
+				postData("/api/quotationitems/delete",`quotationItem=${this.value}`,function(){
+					window.location.reload(true);
+				});	
+			}	
 		});
 	}
 }

@@ -53,9 +53,11 @@ document.addEventListener("DOMContentLoaded",function(){
 	//add quotation items
 	const formAddItems = document.getElementById("formAddItems");
 	formAddItems.addEventListener("submit",function(e){
-		sendFormData(this,"/api/quotationitems/add",function(){
-			window.location.reload(true);
-		})
+		if(confirm("Add items?")){
+			sendFormData(this,"/api/quotationitems/add",function(){
+				window.location.reload(true);
+			})
+		}
 		e.preventDefault();
 	});
 		
@@ -84,15 +86,29 @@ document.addEventListener("DOMContentLoaded",function(){
 	//save quotation
 	const formQuotationItems = document.getElementById("formQuotationItems");
 	formQuotationItems.addEventListener("submit",function(e){
-		sendFormData(this,"/api/quotationitems/save",function(){});
+		if(confirm("Save items?"))
+			sendFormData(this,"/api/quotationitems/save",function(){});
 		e.preventDefault();
 	})
 	
 	const formQuotation = document.getElementById("formQuotation");
 	formQuotation.addEventListener("submit",function(e){
-		sendFormData(this,"/api/quotation/"+quotationId,function(){});
+		if(confirm("Save quotation?"))
+			sendFormData(this,"/api/quotation/"+quotationId,function(){});
 		e.preventDefault();
 	})
+
+	const btnSaveAll = document.getElementById("btnSaveAll"); 
+	btnSaveAll.addEventListener("click",function(e){
+		if(confirm("Save Chanages?")){
+			sendFormData(formQuotation,"/api/quotation/"+quotationId,function(){
+				sendFormData(formQuotationItems,"/api/quotationitems/save",function(){
+					window.location.href=`/pr/${prNo}/quotation/all`;
+				});	
+			});
+		}	
+		e.preventDefault();
+	});
 	//initialize sorter
 	let sorter = new Sorter(quotationItemsTableControl,0,3);
 	sorter.addSortIcons();
