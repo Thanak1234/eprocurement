@@ -38,9 +38,11 @@ function renderPurchaseOrderItemTable(data){
 		btnRemove.className = "btn btn-danger";
 		cellAction.appendChild(btnRemove);
 		btnRemove.addEventListener("click",function(){
-			postData("/api/poitems/delete",`item= ${this.value}`,function(){
-				window.location.reload(true);
-			})
+			if(confirm("Remove item?")){
+				postData("/api/poitems/delete",`item= ${this.value}`,function(){
+					window.location.reload(true);
+				})
+			}	
 		});
 	}
 }

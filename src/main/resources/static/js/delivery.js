@@ -53,7 +53,9 @@ document.addEventListener("DOMContentLoaded",function(){
 	
 	const formDeliveryItem = document.getElementById("formDeliveryItem");
 	formDeliveryItem.addEventListener("submit",function(e){
-		sendFormData(this,"/api/deliveryitem/save",function(){});
+		if(confirm("Save items?")){
+			sendFormData(this,"/api/deliveryitem/save",function(){});
+		}
 		e.preventDefault();
 	});
 	
@@ -104,18 +106,33 @@ document.addEventListener("DOMContentLoaded",function(){
 	
 	const formPoItems = document.getElementById("formPoItems");
 	formPoItems.addEventListener("submit", function(e){
-		sendFormData(this,`/api/deliveryitem/${deliveryid}/add`,function(){
-			window.location.reload(true);
-		});
+		if(confirm("Add items?")){
+			sendFormData(this,`/api/deliveryitem/${deliveryid}/add`,function(){
+				window.location.reload(true);
+			});
+		}
 		e.preventDefault();
 	});
 
 	const formDelivery = document.getElementById("formDelivery");
 	formDelivery.addEventListener("submit",function(e){
-		sendFormData(this,`/api/delivery/${deliveryid}`,function(){
-			window.location.reload(true);
-		});
+		if(confirm("Save delivery?")){
+			sendFormData(this,`/api/delivery/${deliveryid}`,function(){
+				window.location.reload(true);
+			});
+		}
 		e.preventDefault();
 	});
 	
+	const btnSaveAll = document.getElementById("btnSaveAll");
+	btnSaveAll.addEventListener("click",function(e){
+		if(confirm("Save changes?")){
+			sendFormData(formDelivery,`/api/delivery/${deliveryid}`,function(){
+				sendFormData(formDeliveryItem,"/api/deliveryitem/save",function(){
+					window.location.href=`/po/${poNo}/delivery/all`;
+				});
+			});
+		}
+		e.preventDefault();
+	});
 })

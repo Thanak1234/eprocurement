@@ -14,9 +14,9 @@
 	</div>
 
 	<div class="container">
-		<a th:href="@{${@jasperserverUrl}+'/rest_v2/reports/'+${@reportUrl}+'/Canvass.pdf?quotationid='+${quotation.id}}">Generate Pdf</a>
+		<a th:href="@{${@jasperserverUrl}+'/rest_v2/reports/'+${@reportUrl}+'/Canvass.pdf?quotationid='+${quotation.id}}" class="btn-generate-pdf">Generate Pdf</a>
 		<span>/</span>
-		<a th:href="@{${@jasperserverUrl}+'/rest_v2/reports/'+${@reportUrl}+'/Canvass.xls?quotationid='+${quotation.id}}">Generate Xls</a>
+		<a th:href="@{${@jasperserverUrl}+'/rest_v2/reports/'+${@reportUrl}+'/Canvass.xls?quotationid='+${quotation.id}}" class="btn-generate-xls">Generate Xls</a>
 		<form id="formQuotation">
 			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 			<div> 
@@ -117,6 +117,6 @@
 
 <script type="module" th:src="@{/js/quotationItems.js}"></script>
 
-
+<script th:src="@{/js/jasperControls.js}" type="text/javascript"></script>
 </body>
 </html>

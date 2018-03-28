@@ -91,16 +91,21 @@ document.addEventListener("DOMContentLoaded",function(){
 	
 	const formAddItems = document.getElementById("formAddItems");
 	formAddItems.addEventListener("submit", function(e){
-		sendFormData(this,"/api/poitems/add",function(){
-			window.location.reload(true);
-		})
+		if(confirm("Add items?")){
+			sendFormData(this,"/api/poitems/add",function(){
+				window.location.reload(true);
+			})	
+		}
 		e.preventDefault();
 	})
 	
 	const formPo = document.getElementById("formPo");
 	formPo.addEventListener("submit",function(e){
-		sendFormData(this,"/api/po/"+poNo,function(){
-		})
+		if(confirm("Save purchase order?")){
+			sendFormData(this,"/api/po/"+poNo,function(){
+				window.location.href="/po/all";
+			})
+		}	
 		e.preventDefault();
 	});
 });

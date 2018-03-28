@@ -15,9 +15,9 @@
 	<div class="container">
 	<a data-toggle="modal" href="#modalNewQuotation">New Quotation</a>
 	<span>/</span>
-	<a th:href="@{${@jasperserverUrl}+'/rest_v2/reports/'+${@reportUrl}+'/Abstract.pdf?prno='+${pr.prNo}}">Generate Pdf</a>
+	<a th:href="@{${@jasperserverUrl}+'/rest_v2/reports/'+${@reportUrl}+'/Abstract.pdf?prno='+${pr.prNo}}" class="btn-generate-pdf">Generate Pdf</a>
 	<span>/</span>
-	<a th:href="@{${@jasperserverUrl}+'/rest_v2/reports/'+${@reportUrl}+'/Abstract.xls?prno='+${pr.prNo}}">Generate Xls</a><br />
+	<a th:href="@{${@jasperserverUrl}+'/rest_v2/reports/'+${@reportUrl}+'/Abstract.xls?prno='+${pr.prNo}}" class="btn-generate-xls">Generate Xls</a><br />
 	<!-- page size -->
 	<label for="selectPageSize">Show</label>
 	<select id="selectPageSize">
@@ -70,5 +70,6 @@
 
 <script type="module" th:src="@{/js/prQuotations.js}"></script>
 
+<script th:src="@{/js/jasperControls.js}" type="text/javascript"></script>
 </body>
 </html>

@@ -38,5 +38,11 @@ document.addEventListener("DOMContentLoaded", function(){
 		deliveriesSorter.sortTable("date");
 		deliveriesSorter.setSortedColumn(1);
 	});
+
+	const btnNewDelivery = document.getElementById("btn-new-delivery");
+	btnNewDelivery.addEventListener("click",function(e){
+		if(!confirm("Create new delivery?"))
+			e.preventDefault();
+	});
 	
 });

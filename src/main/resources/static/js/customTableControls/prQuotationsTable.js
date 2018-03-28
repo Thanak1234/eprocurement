@@ -36,6 +36,10 @@ function renderPrQuotationsTable(data){
 		purchaseOrderLink.href = `/quotation/${data["content"][i]["id"]}/po/new`;
 		purchaseOrderLink.text = " New Purchase Order";
 		purchaseOrderLink.className = "btn btn-primary";
+		purchaseOrderLink.addEventListener("click",function(e){
+			if(!confirm("Create new purchase order?"))
+				e.preventDefault();
+		});
 		
 		let span = document.createElement("span");
 		span.textContent = " ";

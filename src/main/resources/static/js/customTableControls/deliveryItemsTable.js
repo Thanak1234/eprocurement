@@ -50,9 +50,11 @@ function renderDeliveryItemTable(data){
 		btnRemove.value = data["content"][i]["id"];
 		btnRemove.className = "btn btn-danger";
 		btnRemove.addEventListener("click", function(){
-			postData("/api/deliveryitem/delete",`item=${this.value}`,function(){
-				window.location.reload(true);
-			})
+			if(confirm("Remove item?")){
+				postData("/api/deliveryitem/delete",`item=${this.value}`,function(){
+					window.location.reload(true);
+				})
+			}
 		});
 		let cellAction = row.insertCell();
 		cellAction.appendChild(btnRemove);		
