@@ -12,5 +12,7 @@ function validateRegistration(e) {
     e.preventDefault();
     return false;
   }
-    return confirm("Do you want to register new user?");
+    if(!confirm("Save changes?")){
+      e.preventDefault();
+    }
 }
