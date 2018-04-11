@@ -82,5 +82,4 @@ public class DataJpaTests {
 			assertThat(department.getDepartmentHead()).isEqualTo("Charmia Dacanay");
 		}
 	}
-
 }
