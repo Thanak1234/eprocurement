@@ -9,6 +9,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -25,7 +26,7 @@ public class PurchaseRequest {
 	
 	private Date prDate;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	private Department department;
 	
 	private String modeOfProcurement;

@@ -27,6 +27,7 @@ public class QuotationItem {
 	@ManyToOne
 	private Quotation quotation;
 	
+	
 	@ManyToOne
 	private PurchaseRequestItem purchaseRequestItem;
 		
