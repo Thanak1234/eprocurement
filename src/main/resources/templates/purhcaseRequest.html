@@ -3,6 +3,12 @@
 <head>
 <title>New Purchase Request</title>
 <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" />
+<style>
+	#errorMsg{
+		color:red;
+	}
+
+</style>
 </head>
 <body>
 	<nav class="nav navbar-default navbar-fixed-top" th:include="index::nav"></nav>
@@ -15,6 +21,7 @@
 		<div class="form-group">
 			<label for="prNo">P.R. Number</label> 
 			<input th:field="*{prNo}" placeholder="P.R. Number" th:required="required" />
+			<span th:text="${errorMsg}" id="errorMsg"></span>
 		</div>
 		<input type="hidden" name="department" th:value="${#authentication.getPrincipal().department.id}" sec:authorize="hasRole('ROLE_USER')" />
 		<div class="form-group" sec:authorize="hasRole('ROLE_ADMIN')">
