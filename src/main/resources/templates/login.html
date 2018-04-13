@@ -7,6 +7,10 @@
         #login-form{
             margin-top: 10%;
         }
+
+        #errorMsg{
+            color: red;
+        }
     </style>
 </head>
 <title>OpenEPS Login</title>
@@ -17,6 +21,7 @@
             <div class="container-fluid col-md-4" id="login-form">
                 <form th:action="@{/login}" method="post">
                     <h1>OpenEPS</h1>
+                    <span th:if="${param.error != null}" id="errorMsg">Invalid username of password</span>
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input type="text" name="username" id="username" class="form-control"/>

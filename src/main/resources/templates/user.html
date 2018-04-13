@@ -3,6 +3,11 @@
 <head>
 <title th:text="${#strings.isEmpty(user.id) ? 'New User' : 'Update User '+ user.id}"></title>
 <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.min.css}" />
+<style>
+	#errorMessage{
+		color: red;
+	}
+</style>
 </head>
 <body>
 	
