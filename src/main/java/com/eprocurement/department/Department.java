@@ -26,6 +26,22 @@ public class Department {
 
 	private String departmentHead;
 
+	private String departmentHeadPosition;
+
+	/**
+	 * @return the departmentHeadPosition
+	 */
+	public String getDepartmentHeadPosition() {
+		return departmentHeadPosition;
+	}
+
+	/**
+	 * @param departmentHeadPosition the departmentHeadPosition to set
+	 */
+	public void setDepartmentHeadPosition(String departmentHeadPosition) {
+		this.departmentHeadPosition = departmentHeadPosition;
+	}
+
 	@LastModifiedBy
 	@JsonIgnore
 	private String lastModifiedBy;
