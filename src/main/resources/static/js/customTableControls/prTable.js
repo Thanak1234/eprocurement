@@ -56,6 +56,15 @@ function prTableCallback(data){
 			inputQuantity.value = data["content"][i]["quantity"]
 			let quantityCell = row.insertCell();
 			quantityCell.appendChild(inputQuantity);
+
+			//input abc
+			let inputABC = document.createElement("input");
+			inputABC.name="abc";
+			inputABC.type="number";
+			inputABC.step=0.01;
+			inputABC.value=data["content"][i]["abc"];
+			let abcCell = row.insertCell();
+			abcCell.appendChild(inputABC);
 		
 			//remove button
 			let btnRemove = document.createElement("button");

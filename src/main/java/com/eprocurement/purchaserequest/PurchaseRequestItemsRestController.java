@@ -52,8 +52,8 @@ public class PurchaseRequestItemsRestController {
 	@PostMapping("/save")
 	public void savePrItems(@RequestParam List<PurchaseRequestItem> item, 
 			@RequestParam List<Integer> quantity, 
-			@RequestParam List<String> unit ) {
-		purchaseRequestService.updateItems(item, quantity, unit);
+			@RequestParam List<String> unit, @RequestParam List<Double> abc ) {
+		purchaseRequestService.updateItems(item, quantity, unit, abc);
 		
 	}
 	

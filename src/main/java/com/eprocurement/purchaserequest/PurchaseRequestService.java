@@ -15,5 +15,5 @@ public interface PurchaseRequestService {
 
 	public void addItems(PurchaseRequest purchaseRequest, List<Item> items);
 
-	public void updateItems(List <PurchaseRequestItem> purchaseRequestItem,List <Integer> quantity,List <String> unit);
+	public void updateItems(List <PurchaseRequestItem> purchaseRequestItem,List <Integer> quantity,List <String> unit, List<Double> abc);
 }

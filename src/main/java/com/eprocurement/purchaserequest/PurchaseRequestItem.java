@@ -36,6 +36,22 @@ public class PurchaseRequestItem {
 	
 	private String unit;
 
+	private Double abc;
+
+	/**
+	 * @return the abc
+	 */
+	public Double getAbc() {
+		return abc;
+	}
+
+	/**
+	 * @param abc the abc to set
+	 */
+	public void setAbc(Double abc) {
+		this.abc = abc;
+	}
+
 	@LastModifiedBy
 	@JsonIgnore
 	private String lastModifiedBy;

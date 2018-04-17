@@ -45,6 +45,7 @@ public class PurchaseRequestServiceImpl implements PurchaseRequestService {
 			PurchaseRequestItem purchaseRequestItem = new PurchaseRequestItem();
 			purchaseRequestItem.setItem(item);
 			purchaseRequestItem.setQuantity(1);
+			purchaseRequestItem.setAbc(0.00);
 			purchaseRequestItem.setUnit("piece");
 			purchaseRequestItem.setPurchaseRequest(purchaseRequest);
 			purchaseRequestItemRepository.save(purchaseRequestItem);
@@ -52,11 +53,12 @@ public class PurchaseRequestServiceImpl implements PurchaseRequestService {
 	}
 
 	@Override
-	public void updateItems(List<PurchaseRequestItem> purchaseRequestItem, List<Integer> quantity, List<String> unit) {
+	public void updateItems(List<PurchaseRequestItem> purchaseRequestItem, List<Integer> quantity, List<String> unit, List<Double> abc) {
 		
 		for (int i = 0; i < purchaseRequestItem.size(); i++) {
 			purchaseRequestItem.get(i).setQuantity(quantity.get(i));
 			purchaseRequestItem.get(i).setUnit(unit.get(i));
+			purchaseRequestItem.get(i).setAbc(abc.get(i));
 			purchaseRequestItemRepository.save(purchaseRequestItem.get(i));
 		}
 	}
