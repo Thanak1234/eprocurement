@@ -1,8 +1,10 @@
 package com.eprocurement;
 
-import com.eprocurement.item.Item;
-import com.eprocurement.item.ItemRepository;
-import com.eprocurement.item.ItemRestController;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.eprocurement.supplier.Supplier;
+import com.eprocurement.supplier.SupplierRepository;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,9 +21,6 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -29,39 +28,39 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
-
-/**
- * ItemRestMvcTest
- */
+@WebMvcTest
 @RunWith(SpringRunner.class)
-@WebMvcTest(ItemRestController.class)
-@WithMockUser(roles = "ADMIN")
+@WithMockUser(roles="ADMIN")
 @EnableSpringDataWebSupport
-public class ItemRestMvcTest {
+class SupplierRestMvcTest{
 
     @MockBean
-    private ItemRepository itemRepository;
+    private SupplierRepository supplierRepository;
 
     @Autowired
     private MockMvc mvc;
 
     @Test
-    public void testGetItems() throws Exception {
-        //Set up
-        Item newItem = new Item();
-        newItem.setName("Shoes");
-        newItem.setDescription("Vans");
-        Pageable pageable = PageRequest.of(0, 20);
-        List<Item> items = new ArrayList<>();
-        items.add(newItem);
-        Page<Item> itemPage = new PageImpl<Item>(items, pageable, 20);
+    public void testGetSuppliers()throws Exception{
+        //Set supplier
+        Supplier supplier = new Supplier();
+        supplier.setAddress("Bayombong, Nueva Vizcaya");
+        supplier.setContactNumber("NA");
+        supplier.setSupplierName("Test Supplier");
+        supplier.setTin("tin");
+        
+        Pageable pageable = PageRequest.of(0,20);
+        List<Supplier> suppliers = new ArrayList<>();
+        suppliers.add(supplier);
+        Page<Supplier> supplierPage = new PageImpl<Supplier>(suppliers, pageable, 20);
 
-        given(itemRepository.findAll(any(Pageable.class))).willReturn(itemPage);
-        this.mvc.perform(get("/api/items").accept(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk())
+        given(supplierRepository.findAll(any(Pageable.class))).willReturn(supplierPage);
+
+        this.mvc.perform(get("/api/suppliers").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.content", hasSize(1)))
-                .andExpect(jsonPath("$.content[0].name", is(newItem.getName())));
-
+                .andExpect(jsonPath("$.content[0].supplierName", is(supplier.getSupplierName())));
     }
+
 }
