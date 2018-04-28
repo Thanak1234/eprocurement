@@ -24,9 +24,19 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
 	
 	@Override
 	public PurchaseOrder createNewPurchaseOrder(Quotation quotation) {
-		Date now = new Date(Calendar.getInstance().getTimeInMillis());
+		Calendar now = Calendar.getInstance();
+		String poNo= "PO"+Integer.toString(now.get(Calendar.YEAR))+"-";
+		String count = Long.toString(purchaseOrderRepository.count()+1);
+		for(int i=count.length();i<4;i++) {
+			poNo +=0;
+		}
+		poNo += count;
+		//Date now = new Date(Calendar.getInstance().getTimeInMillis());
 		PurchaseOrder purchaseOrder = new PurchaseOrder();
-		purchaseOrder.setDate(now);
+		purchaseOrder.setPoNo(poNo);
+		//Save purchase order
+		Date poDate = new Date(now.getTimeInMillis());
+		purchaseOrder.setDate(poDate);
 		purchaseOrder.setQuotation(quotation);
 		purchaseOrderRepository.save(purchaseOrder);
 		return purchaseOrder;

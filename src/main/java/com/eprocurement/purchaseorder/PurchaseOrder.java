@@ -9,10 +9,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
@@ -21,8 +20,8 @@ import javax.persistence.OneToOne;
 public class PurchaseOrder {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long poNo;
+	@Column(unique=true)
+	private String poNo;
 	
 	private Date date;
 	
@@ -65,11 +64,11 @@ public class PurchaseOrder {
 		this.lastModifiedDate = lastModifiedDate;
 	}
 
-	public Long getPoNo() {
+	public String getPoNo() {
 		return poNo;
 	}
-
-	public void setPoNo(Long poNo) {
+	
+	public void setPoNo(String poNo) {
 		this.poNo = poNo;
 	}
 
