@@ -8,13 +8,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+
+import java.util.Optional;
+
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 
 import com.eprocurement.department.Department;
 import com.eprocurement.department.DepartmentController;
 import com.eprocurement.department.DepartmentRepository;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,12 +43,6 @@ public class DepartmentMvcTest {
 	
 	@MockBean
 	private Department department;
-	
-	@Before
-	public void setup() {
-		department.setDepartmentHead("Mock Bock");
-		department.setDepartmentName("XYZ department");
-	}
 	
 	//test get all department
 	@Test
@@ -76,9 +72,15 @@ public class DepartmentMvcTest {
 	//test get update form
 	@Test
 	public void testGetUpdateForm()throws Exception{
-		if(this.departmentRepository.findById(1L).isPresent()){
-			given(departmentRepository.findById(1L).get()).willReturn(department);
-		}
+		
+		Department department = new Department();
+		department.setId(1L);
+		department.setDepartmentName("MPDO");
+		department.setDepartmentHeadPosition("MPDC");
+		department.setDepartmentHead("NA");
+			
+		given(departmentRepository.findById(1L)).willReturn(Optional.of(department));
+		
 		mvc.perform(get("/department/1"))
 			.andExpect(status().isOk())
 			.andExpect(view().name("department"))

@@ -10,6 +10,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
+import java.util.Optional;
+
 import com.eprocurement.item.Item;
 import com.eprocurement.item.ItemController;
 import com.eprocurement.item.ItemRepository;
@@ -75,9 +77,9 @@ public class ItemMvcTest {
 	@Test
 	@WithMockUser(roles = "ADMIN")
 	public void testGetItemUpdateForm() throws Exception {
-		if (this.itemRepository.findById(1L).isPresent()) {
-			given(this.itemRepository.findById(1L).get()).willReturn(item);
-		}
+		
+		given(this.itemRepository.findById(1L)).willReturn(Optional.of(item));
+		
 		mvc.perform(get("/item/1")).andExpect(status().isOk()).andExpect(view().name("item"))
 				.andExpect(model().attributeExists("item")).andExpect(model().attribute("item", equalTo(item)));
 	}

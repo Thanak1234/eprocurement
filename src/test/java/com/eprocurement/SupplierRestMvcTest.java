@@ -33,7 +33,7 @@ import static org.hamcrest.Matchers.is;
 @RunWith(SpringRunner.class)
 @WithMockUser(roles="ADMIN")
 @EnableSpringDataWebSupport
-class SupplierRestMvcTest{
+public class SupplierRestMvcTest{
 
     @MockBean
     private SupplierRepository supplierRepository;
