@@ -24,8 +24,18 @@ public class PurchaseRequestServiceImpl implements PurchaseRequestService {
 	
 	@Override
 	public void createNewPurchaseRequest(PurchaseRequest purchaseRequest) {
-		Date now = new Date(Calendar.getInstance().getTimeInMillis());
-		purchaseRequest.setPrDate(now);
+		Calendar now = Calendar.getInstance();	
+		//purchase request number
+		String count = Long.toString(purchaseRequestRepository.count()+1);
+		String prNo = Integer.toString(now.get(Calendar.YEAR))+"-";
+		for(int i=count.length();i<4;i++) {
+			prNo += "0";
+		}
+		prNo +=count;
+		purchaseRequest.setPrNo(prNo);
+		//purchase request date
+		Date prDate = new Date(now.getTimeInMillis());
+		purchaseRequest.setPrDate(prDate);
 		purchaseRequestRepository.save(purchaseRequest);
 	}
 

@@ -29,9 +29,6 @@ public class PurchaseRequestController {
 	@Autowired
 	private UserRepository userRepository;
 
-	@Autowired
-	private PurchaseRequestRepository purchaseRequestRepository;
-
 	@GetMapping("/new")
 	public String getNewPurchaseRequestForm(Model model) {
 		model.addAttribute("departments", departmentRepository.findAll());
@@ -41,13 +38,8 @@ public class PurchaseRequestController {
 	
 	@PostMapping("/save")
 	public String savePurchaseRequest(@ModelAttribute PurchaseRequest purchaseRequest, Model model) {
-		if(purchaseRequestRepository.existsById(purchaseRequest.getPrNo())){
-			model.addAttribute("errorMsg","Purchase request number already exists");
-			return "purhcaseRequest";
-		}else{
 			purchaseRequestService.createNewPurchaseRequest(purchaseRequest);
 			return "redirect:/pr/"+purchaseRequest.getPrNo()+"/details";
-		}
 	}
 	
 	//display purchase requests
