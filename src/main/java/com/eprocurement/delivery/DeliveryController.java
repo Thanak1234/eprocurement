@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class DeliveryController {
 
 	@Autowired
-
-	private DeliveryServiceImpl deliveryService;
+	private DeliveryService deliveryService;
 
 	@GetMapping("/po/{po}/delivery/all")
 	public String getDeliveries(@PathVariable PurchaseOrder po, Model model) {

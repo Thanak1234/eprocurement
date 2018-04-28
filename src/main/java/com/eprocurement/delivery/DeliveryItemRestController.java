@@ -21,7 +21,6 @@ public class DeliveryItemRestController {
 	@Autowired
 	private DeliveryItemRepository deliveryItemRepository;
 	
-
 	@Autowired
 	private DeliveryService deliveryService;
 	

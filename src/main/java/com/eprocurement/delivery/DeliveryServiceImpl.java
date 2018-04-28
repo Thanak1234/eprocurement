@@ -4,16 +4,16 @@ import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
 
-import javax.transaction.Transactional;
 
 import com.eprocurement.purchaseorder.PurchaseOrder;
 import com.eprocurement.purchaseorder.PurchaseOrderItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-@Service
 @Transactional
+@Service
 public class DeliveryServiceImpl implements DeliveryService {
 
 	@Autowired
