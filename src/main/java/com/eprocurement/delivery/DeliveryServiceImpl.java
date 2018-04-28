@@ -24,9 +24,17 @@ public class DeliveryServiceImpl implements DeliveryService {
 	
 	@Override
 	public Delivery createNewDelivery(PurchaseOrder purchaseOrder) {
-		Date now = new Date(Calendar.getInstance().getTimeInMillis());
+		Calendar now = Calendar.getInstance();
+		String count = Long.toString(deliveryRepository.count());
+		String id = "D"+Integer.toString(now.get(Calendar.YEAR))+"-";
+		for(int i=count.length();i<4;i++) {
+			id+= "0";
+		}
+		id +=count;
 		Delivery delivery = new Delivery();
-		delivery.setDate(now);
+		delivery.setId(id);
+		Date deliveryDate = new Date(now.getTimeInMillis());
+		delivery.setDate(deliveryDate);
 		delivery.setPurchaseOrder(purchaseOrder);
 		deliveryRepository.save(delivery);
 		return delivery;
