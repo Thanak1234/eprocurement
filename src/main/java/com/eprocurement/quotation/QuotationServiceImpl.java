@@ -24,8 +24,22 @@ public class QuotationServiceImpl implements QuotationService {
 	@Override
 	public Quotation createNewQuotation(PurchaseRequest purchaseRequest, Supplier supplier) {
 		Quotation quotation = new Quotation();
-		Date now = new Date(Calendar.getInstance().getTimeInMillis());
-		quotation.setQuotationDate(now);
+		
+		Calendar now = Calendar.getInstance();
+		
+		String count = Long.toString(quotationRepository.count()+1);
+		String id = "Q"+Integer.toString(now.get(Calendar.YEAR))+"-";
+		
+		for(int i=count.length();i < 4;i++) {
+			id += "0";
+		}
+		
+		id += count;
+		quotation.setId(id);
+		//Date now = new Date(Calendar.getInstance().getTimeInMillis());
+		
+		Date quotationDate = new Date(now.getTimeInMillis());
+		quotation.setQuotationDate(quotationDate);
 		quotation.setPurchaseRequest(purchaseRequest);
 		quotation.setSupplier(supplier);
 		quotationRepository.save(quotation);

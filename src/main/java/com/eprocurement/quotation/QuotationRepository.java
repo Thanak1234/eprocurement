@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-public interface QuotationRepository extends PagingAndSortingRepository<Quotation, Long> {
+public interface QuotationRepository extends PagingAndSortingRepository<Quotation, String> {
 
 	Page<Quotation> findByPurchaseRequest(PurchaseRequest pr, Pageable pageable);
 	

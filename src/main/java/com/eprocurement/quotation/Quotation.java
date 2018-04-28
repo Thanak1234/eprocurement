@@ -10,10 +10,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -23,8 +22,8 @@ import javax.persistence.OneToOne;
 public class Quotation {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	@Column(unique=true)
+	private String id;
 		
 	private Date quotationDate;
 	
@@ -70,11 +69,11 @@ public class Quotation {
 		this.lastModifiedDate = lastModifiedDate;
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
-
-	public void setId(Long id) {
+	
+	public void setId(String id) {
 		this.id = id;
 	}
 
