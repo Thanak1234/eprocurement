@@ -18,11 +18,7 @@
 	<div class="container">
 	<!-- Form -->
 	<form method="post" th:object="${purchaseRequest}" th:action="@{/pr/save}" class="form-confirm">
-		<div class="form-group">
-			<label for="prNo">P.R. Number</label> 
-			<input th:field="*{prNo}" placeholder="P.R. Number" th:required="required" />
-			<span th:text="${errorMsg}" id="errorMsg"></span>
-		</div>
+		
 		<input type="hidden" name="department" th:value="${#authentication.getPrincipal().department.id}" sec:authorize="hasRole('ROLE_USER')" />
 		<div class="form-group" sec:authorize="hasRole('ROLE_ADMIN')">
 			<label for="department">Department</label> <select
