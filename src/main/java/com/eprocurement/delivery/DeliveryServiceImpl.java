@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.eprocurement.purchaseorder.PurchaseOrder;
 import com.eprocurement.purchaseorder.PurchaseOrderItem;
+import com.eprocurement.utilities.IdGenerator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,16 +22,22 @@ public class DeliveryServiceImpl implements DeliveryService {
 	
 	@Autowired
 	private DeliveryItemRepository deliveryItemRepository;
+
+	@Autowired
+	private IdGenerator idGenerator;
 	
 	@Override
 	public Delivery createNewDelivery(PurchaseOrder purchaseOrder) {
 		Calendar now = Calendar.getInstance();
-		String count = Long.toString(deliveryRepository.count());
-		String id = "D"+Integer.toString(now.get(Calendar.YEAR))+"-";
-		for(int i=count.length();i<4;i++) {
-			id+= "0";
-		}
-		id +=count;
+		//start date and end date
+		String startDateString = Integer.toString(now.get(Calendar.YEAR)) + "-1-1";
+		String endDateString = Integer.toString(now.get(Calendar.YEAR)) + "-12-31";
+		Date startDate = Date.valueOf(startDateString);
+		Date endDate = Date.valueOf(endDateString);
+		//count
+		String count = Integer.toString(deliveryRepository.findByDateBetween(startDate, endDate).size()+1);
+		String id = "D"+idGenerator.createId(now,count);
+
 		Delivery delivery = new Delivery();
 		delivery.setId(id);
 		Date deliveryDate = new Date(now.getTimeInMillis());

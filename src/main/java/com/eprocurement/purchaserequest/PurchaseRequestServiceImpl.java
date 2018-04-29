@@ -7,7 +7,7 @@ import java.util.List;
 
 import com.eprocurement.department.Department;
 import com.eprocurement.item.Item;
-import com.eprocurement.utilities.IdGenerationService;
+import com.eprocurement.utilities.IdGenerator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ public class PurchaseRequestServiceImpl implements PurchaseRequestService {
 	private PurchaseRequestItemsRepository purchaseRequestItemRepository;
 	
 	@Autowired
-	private IdGenerationService idGenerationService;
+	private IdGenerator idGenerator;
 
 	@Override
 	public void createNewPurchaseRequest(PurchaseRequest purchaseRequest) {
@@ -38,7 +38,7 @@ public class PurchaseRequestServiceImpl implements PurchaseRequestService {
 		//count 
 		String count = Integer.toString(purchaseRequestRepository.findByPrDateBetween(startDate, endDate).size()+1);
 		//generate id
-		String prNo = idGenerationService.createId(now, count);
+		String prNo = idGenerator.createId(now, count);
 		purchaseRequest.setPrNo(prNo);
 		//purchase request date
 		Date prDate = new Date(now.getTimeInMillis());
