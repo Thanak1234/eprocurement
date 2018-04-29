@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.eprocurement.department.Department;
 import com.eprocurement.item.Item;
+import com.eprocurement.utilities.IdGenerationService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,16 +23,22 @@ public class PurchaseRequestServiceImpl implements PurchaseRequestService {
 	@Autowired
 	private PurchaseRequestItemsRepository purchaseRequestItemRepository;
 	
+	@Autowired
+	private IdGenerationService idGenerationService;
+
 	@Override
 	public void createNewPurchaseRequest(PurchaseRequest purchaseRequest) {
 		Calendar now = Calendar.getInstance();	
-		//purchase request number
-		String count = Long.toString(purchaseRequestRepository.count()+1);
-		String prNo = Integer.toString(now.get(Calendar.YEAR))+"-";
-		for(int i=count.length();i<4;i++) {
-			prNo += "0";
-		}
-		prNo +=count;
+		
+		//start date and end date
+		String startDateString =Integer.toString(now.get(Calendar.YEAR))+"-1-1";
+		String endDateString =  Integer.toString(now.get(Calendar.YEAR))+"-12-31";
+		Date startDate = Date.valueOf(startDateString);
+		Date endDate = Date.valueOf(endDateString);
+		//count 
+		String count = Integer.toString(purchaseRequestRepository.findByPrDateBetween(startDate, endDate).size()+1);
+		//generate id
+		String prNo = idGenerationService.createId(now, count);
 		purchaseRequest.setPrNo(prNo);
 		//purchase request date
 		Date prDate = new Date(now.getTimeInMillis());

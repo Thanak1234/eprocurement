@@ -2,6 +2,7 @@ package com.eprocurement.purchaserequest;
 
 import com.eprocurement.department.Department;
 import java.sql.Date;
+import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,5 +13,5 @@ public interface PurchaseRequestRepository extends PagingAndSortingRepository<Pu
 	Page<PurchaseRequest> findByPrNo(String pr, Pageable pageable);
 	Page<PurchaseRequest> findByPrDateBetween(Date startDate,Date endDate, Pageable pageable);
 	Page<PurchaseRequest> findByDepartmentAndPrDateBetween(Department department, Date startDate, Date endDate, Pageable pageable);
-	
+	List<PurchaseRequest> findByPrDateBetween(Date startDate, Date endDate);
 }
