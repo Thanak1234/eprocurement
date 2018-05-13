@@ -27,7 +27,7 @@ public class DeliveryServiceImpl implements DeliveryService {
 	private IdGenerator idGenerator;
 	
 	@Override
-	public Delivery createNewDelivery(PurchaseOrder purchaseOrder) {
+	public Delivery createNewDelivery(PurchaseOrder purchaseOrder, String invoiceNumber) {
 		Calendar now = Calendar.getInstance();
 		//start date and end date
 		String startDateString = Integer.toString(now.get(Calendar.YEAR)) + "-1-1";
@@ -43,6 +43,7 @@ public class DeliveryServiceImpl implements DeliveryService {
 		Date deliveryDate = new Date(now.getTimeInMillis());
 		delivery.setDate(deliveryDate);
 		delivery.setPurchaseOrder(purchaseOrder);
+		delivery.setInvoiceNumber(invoiceNumber);
 		deliveryRepository.save(delivery);
 		return delivery;
 	}
@@ -68,7 +69,8 @@ public class DeliveryServiceImpl implements DeliveryService {
 	}
 
 	@Override
-	public void updateDelivery(Delivery delivery, Date date) {
+	public void updateDelivery(Delivery delivery, Date date, String invoiceNumber) {
+		delivery.setInvoiceNumber(invoiceNumber);
 		delivery.setDate(date);
 		deliveryRepository.save(delivery);
 	}

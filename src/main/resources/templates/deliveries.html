@@ -14,7 +14,7 @@
 	</div>
 	
 	<section class="container">		
-			<a id="btn-new-delivery" th:href="@{'/po/'+${po.poNo}+'/delivery/new'}">New Delivery</a><br />
+			<a data-toggle="modal" href="#modalNewDelivery">New Delivery</a><br />
 		
 			<!-- select page size -->
 			<label for="selectPageSize">Show</label>
@@ -38,6 +38,27 @@
 			<ul class="pager" id="pagination"></ul>
 					
 	</section>
+
+	<div class="modal" id="modalNewDelivery">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">New Delivery</h4>
+				</div><!--end modal header-->
+				<div  class="modal-body">
+					<form method="post" id="formNewDelivery" th:action="@{'/po/'+${po.poNo}+'/delivery/new'}">
+						<label for="invoiceNumber">Invoice Number</label>
+						<input type="text" th:required="required" id="invoiceNumber" name="invoiceNumber" />
+					</form>
+				</div><!--end modal body-->
+				<div class="modal-footer">
+					<button form="formNewDelivery" type="submit">Submit</button>
+				</div><!--end modal footer-->
+			</div><!--end modal content-->
+		</div><!--end modal dialog-->
+	</div><!--end modal-->
+
 	<!-- Bootstrap -->
 	<script type="text/javascript" th:src="@{/jquery-3.2.1.min.js}"></script>
 	<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>

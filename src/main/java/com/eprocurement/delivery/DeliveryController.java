@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class DeliveryController {
@@ -19,9 +21,9 @@ public class DeliveryController {
 		return "deliveries";
 	}
 
-	@GetMapping("/po/{po}/delivery/new")
-	public String createNewDelivery(@PathVariable PurchaseOrder po) {
-		Delivery delivery = deliveryService.createNewDelivery(po);
+	@PostMapping("/po/{po}/delivery/new")
+	public String createNewDelivery(@PathVariable PurchaseOrder po, @RequestParam String invoiceNumber) {
+		Delivery delivery = deliveryService.createNewDelivery(po,invoiceNumber);
 		return "redirect:/delivery/" + delivery.getId() + "/details";
 	}
 

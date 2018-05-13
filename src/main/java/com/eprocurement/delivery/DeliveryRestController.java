@@ -28,8 +28,8 @@ public class DeliveryRestController {
 	}
 
 	@PostMapping("/api/delivery/{delivery}")
-	public void updateDelivery(@PathVariable Delivery delivery, @RequestParam Date date){
-		deliveryService.updateDelivery(delivery, date);
+	public void updateDelivery(@PathVariable Delivery delivery, @RequestParam Date date, @RequestParam String invoiceNumber){
+		deliveryService.updateDelivery(delivery, date,invoiceNumber);
 	}
 
 }

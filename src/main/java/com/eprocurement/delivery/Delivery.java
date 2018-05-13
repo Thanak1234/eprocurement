@@ -28,6 +28,8 @@ public class Delivery {
 	
 	private Date date;
 
+	private String invoiceNumber;
+
 	@LastModifiedBy
 	@JsonIgnore
 	private String LastModifiedBy;
@@ -36,7 +38,20 @@ public class Delivery {
 	@JsonIgnore
 	private java.util.Date lastModifiedDate;
 
-	
+	/**
+	 * @return the invoiceNumber
+	 */
+	public String getInvoiceNumber() {
+		return invoiceNumber;
+	}
+
+	/**
+	 * @param invoiceNumber the invoiceNumber to set
+	 */
+	public void setInvoiceNumber(String invoiceNumber) {
+		this.invoiceNumber = invoiceNumber;
+	}
+
 	/**
 	 * @return the lastModifiedBy
 	 */

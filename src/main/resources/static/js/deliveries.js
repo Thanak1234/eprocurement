@@ -39,10 +39,11 @@ document.addEventListener("DOMContentLoaded", function(){
 		deliveriesSorter.setSortedColumn(1);
 	});
 
-	const btnNewDelivery = document.getElementById("btn-new-delivery");
-	btnNewDelivery.addEventListener("click",function(e){
-		if(!confirm("Create new delivery?"))
+	const formNewDelivery = document.getElementById("formNewDelivery");
+	formNewDelivery.addEventListener("submit",function(e){
+		if(!confirm("Create new delivery?")){
 			e.preventDefault();
+		}
 	});
 	
 });
