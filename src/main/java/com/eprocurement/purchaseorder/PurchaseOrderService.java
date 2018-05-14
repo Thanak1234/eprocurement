@@ -9,5 +9,4 @@ public interface PurchaseOrderService {
 	
 	public PurchaseOrder createNewPurchaseOrder(Quotation quotation);
 	public void addPurchaseOrderItems(PurchaseOrder purchaseOrder,List<QuotationItem> items);
-	
 }

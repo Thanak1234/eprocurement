@@ -2,6 +2,7 @@ package com.eprocurement.delivery;
 
 import java.util.List;
 
+import com.eprocurement.purchaseorder.PurchaseOrder;
 import com.eprocurement.purchaseorder.PurchaseOrderItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,10 @@ public class DeliveryItemRestController {
 	@PostMapping("/delete")
 	public void removeItem(@RequestParam DeliveryItem item) {
 		deliveryItemRepository.delete(item);
+	}
+
+	@GetMapping("/po/{po}")
+	public List<DeliveryItem> getDeliveryItemsByPoNumber(@PathVariable PurchaseOrder po){
+		return deliveryItemRepository.findByDelivery_PurchaseOrder(po);
 	}
 }

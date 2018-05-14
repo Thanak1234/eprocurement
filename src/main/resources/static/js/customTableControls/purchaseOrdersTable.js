@@ -27,6 +27,24 @@ function renderPurchaseOrdersTable(data){
 		let cellSupplier = row.insertCell();
 		cellSupplier.textContent = data["content"][i]["quotation"]["supplier"]["supplierName"];
 		
+		let cellStatus = row.insertCell();
+		loadData(`/api/deliveryitem/po/${data["content"][i]["poNo"]}`,function(poData){
+			let status = "Finished";
+			cellStatus.className = "text-success";
+			if(poData.length < 1){
+				status = "Pending";
+			}
+			for(let i = 0; i < poData.length;i++){
+				if((poData[i]["quantity"] != poData[i]["purchaseOrderItem"]["quotationItem"]["purchaseRequestItem"]["quantity"])){
+					status = "Pending";
+				}
+			}
+			cellStatus.textContent = status;
+			if(cellStatus.textContent == "Pending"){
+				cellStatus.className = "text-danger";
+			}	
+		});
+
 		let cellAction = row.insertCell();
 		
 		let linkDetails = document.createElement("a");
@@ -46,6 +64,7 @@ function renderPurchaseOrdersTable(data){
 		cellAction.appendChild(linkDelivery);
 	}
 }
+
 
 export default function createPurchaseOrderTable(url,params){
 	loadData(url+params,renderPurchaseOrdersTable);
