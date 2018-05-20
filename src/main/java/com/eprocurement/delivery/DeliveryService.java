@@ -12,4 +12,5 @@ public interface DeliveryService {
 	public void addDeliveryItems(Delivery delivery, List<PurchaseOrderItem> items);
 	public void saveItems(List<DeliveryItem> items,List<Integer>quantity);
 	public void updateDelivery(Delivery delivery, Date date, String invoiceNumeber);
+	public void deleteDeliveryItem(DeliveryItem item);
 }

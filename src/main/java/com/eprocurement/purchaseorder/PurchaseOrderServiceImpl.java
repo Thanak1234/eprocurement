@@ -45,6 +45,7 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
 		Date poDate = new Date(now.getTimeInMillis());
 		purchaseOrder.setDate(poDate);
 		purchaseOrder.setQuotation(quotation);
+		purchaseOrder.setStatus("Pending");
 		purchaseOrderRepository.save(purchaseOrder);
 		return purchaseOrder;
 	}
@@ -57,7 +58,5 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
 			purchaseOrderItem.setQuotationItem(item);
 			purchaseOrderItemRepository.save(purchaseOrderItem);
 		}
-		
 	}
-
 }

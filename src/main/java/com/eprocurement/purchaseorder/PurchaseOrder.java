@@ -28,6 +28,16 @@ public class PurchaseOrder {
 	@OneToOne
 	private Quotation quotation;
 
+	private String status;
+
+	public String getStatus(){
+		return status;
+	}
+
+	public void setStatus(String status){
+		this.status = status;
+	}
+
 	@LastModifiedBy
 	@JsonIgnore
 	private String lastModifiedBy;

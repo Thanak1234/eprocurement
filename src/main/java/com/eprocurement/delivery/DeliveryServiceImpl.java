@@ -57,7 +57,6 @@ public class DeliveryServiceImpl implements DeliveryService {
 			deliveryItem.setQuantity(1);
 			deliveryItemRepository.save(deliveryItem);
 		}
-
 	}
 
 	@Override
@@ -73,6 +72,11 @@ public class DeliveryServiceImpl implements DeliveryService {
 		delivery.setInvoiceNumber(invoiceNumber);
 		delivery.setDate(date);
 		deliveryRepository.save(delivery);
+	}
+
+	@Override
+	public void deleteDeliveryItem(DeliveryItem item) {
+		deliveryItemRepository.delete(item);
 	}
 
 }

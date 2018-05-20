@@ -37,8 +37,9 @@ public class PurchaseOrderRestController {
 	}
 	
 	@PostMapping("/api/po/{po}")
-	public void savePurchaseOrder(@PathVariable PurchaseOrder po,@RequestParam Date date ) {
+	public void savePurchaseOrder(@PathVariable PurchaseOrder po,@RequestParam Date date, @RequestParam String status ) {
 		po.setDate(date);
+		po.setStatus(status);
 		purchaseOrderRepository.save(po);
 	}
 }

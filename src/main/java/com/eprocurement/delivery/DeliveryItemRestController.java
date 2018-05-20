@@ -42,7 +42,7 @@ public class DeliveryItemRestController {
 	
 	@PostMapping("/delete")
 	public void removeItem(@RequestParam DeliveryItem item) {
-		deliveryItemRepository.delete(item);
+		deliveryService.deleteDeliveryItem(item);
 	}
 
 	@GetMapping("/po/{po}")

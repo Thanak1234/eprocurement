@@ -21,6 +21,13 @@
 	<form id="formPo">
 		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 		<div>
+			<label for="status">Status</label>
+			<select th:field="${po.status}">
+				<option value="Pending">Pending</option>
+				<option value="Finished">Finished</option>
+			</select>
+		</div>
+		<div>
 			<label for="date" >Date</label>
 			<input type="date" th:field="${po.date}" th:required="required" />
 		</div>

@@ -1,0 +1,28 @@
+{
+    "run": {
+        "default": "",
+        "items": [
+            {
+                "name": "eprocurement",
+                "projectName": "eprocurement",
+                "workingDirectory": "c:\\Users\\Emilio\\Desktop\\eprocurement",
+                "args": [],
+                "vmargs": [],
+                "preLaunchTask": ""
+            }
+        ]
+    },
+    "debug": {
+        "default": "",
+        "items": [
+            {
+                "name": "eprocurement",
+                "projectName": "eprocurement",
+                "workingDirectory": "c:\\Users\\Emilio\\Desktop\\eprocurement",
+                "args": [],
+                "vmargs": [],
+                "preLaunchTask": ""
+            }
+        ]
+    }
+}

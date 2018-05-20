@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded",function(){
 	purchaseOrderTableControls.addPagination();
 	purchaseOrderTableControls.addPageSizeControls();
 	//initialize sorter
-	let sorter = new Sorter(purchaseOrderTableControls,0,4);
+	let sorter = new Sorter(purchaseOrderTableControls,0,5);
 	sorter.addSortIcons();
 	//get th
 	const th = document.getElementsByTagName("th");
@@ -103,6 +103,11 @@ document.addEventListener("DOMContentLoaded",function(){
 	th[3].addEventListener("click",function(){
 		sorter.sortTable("quotation.supplier.supplierName");
 		sorter.setSortedColumn(3);
-	})
+	});
+
+	th[4].addEventListener("click",function(){
+		sorter.sortTable("status");
+		sorter.setSortedColumn(4);
+	});
 	
 });
